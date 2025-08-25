@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://3v37rkgifxsi"]
+[gd_scene load_steps=9 format=3 uid="uid://3v37rkgifxsi"]
 
 [ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scenes/gameplay.gd" id="1_00tan"]
 [ext_resource type="Texture2D" uid="uid://d2hqluucclmhy" path="res://assets/cursor.png" id="1_7biu0"]
+[ext_resource type="Texture2D" uid="uid://nnymmybilwe0" path="res://assets/choose_box.png" id="3_4bh5q"]
+[ext_resource type="Texture2D" uid="uid://c7kqflmyo4kb0" path="res://assets/egg.png" id="3_din8e"]
+[ext_resource type="Texture2D" uid="uid://do5lx6bqwwq4y" path="res://assets/butter.png" id="4_4bh5q"]
+[ext_resource type="Texture2D" uid="uid://bhuo4kr77ngg2" path="res://assets/dough.png" id="5_e124b"]
+[ext_resource type="Texture2D" uid="uid://81cieqb5uyc8" path="res://assets/suger.png" id="6_101mb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_00tan"]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_00tan")
@@ -11,24 +18,41 @@ script = ExtResource("1_00tan")
 [node name="FillingBox" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 214.0
-offset_top = 112.0
-offset_right = 414.0
-offset_bottom = 212.0
+offset_left = 535.0
+offset_top = 299.0
+offset_right = 735.0
+offset_bottom = 399.0
 
 [node name="RedBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
+material = SubResource("CanvasItemMaterial_00tan")
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 50.0
 color = Color(0.857033, 0.331396, 0.399928, 1)
 
+[node name="OrangeBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
+material = SubResource("CanvasItemMaterial_00tan")
+layout_mode = 0
+offset_left = 62.0
+offset_right = 187.0
+offset_bottom = 50.0
+color = Color(0.774511, 0.430915, 0.247652, 1)
+
+[node name="DarkGreenBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 178.0
+offset_bottom = 50.0
+color = Color(0.227371, 0.622502, 0.430526, 1)
+
 [node name="GreenCenter" type="ColorRect" parent="CanvasLayer/FillingBox"]
+layout_mode = 0
 offset_left = 150.0
 offset_right = 170.0
 offset_bottom = 50.0
-color = Color(0.421034, 0.945983, 0.680775, 1)
+color = Color(0.412953, 0.947574, 0.521636, 1)
 
 [node name="Cursor" type="TextureRect" parent="CanvasLayer/FillingBox"]
-visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -61,3 +85,134 @@ offset_left = -32.0
 offset_top = 50.0
 offset_right = -32.0
 offset_bottom = 50.0
+
+[node name="MinLabel" type="Label" parent="CanvasLayer/FillingBox"]
+layout_mode = 1
+offset_left = -10.0
+offset_top = -25.0
+offset_right = 30.0
+offset_bottom = -2.0
+text = "15g"
+
+[node name="MaxLabel" type="Label" parent="CanvasLayer/FillingBox"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = -25.0
+offset_right = 30.0
+offset_bottom = -2.0
+grow_horizontal = 0
+text = "30g"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_right = 556.0
+grow_vertical = 0
+
+[node name="Egg" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_din8e")
+
+[node name="Butter" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_4bh5q")
+
+[node name="Dough" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("5_e124b")
+
+[node name="Suger" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("6_101mb")
+
+[node name="ChooseBox" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("3_4bh5q")
+
+[node name="FillTarget" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+texture = ExtResource("4_4bh5q")
+
+[node name="DebugCookStateLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "X"
+
+[node name="BakeButton" type="Button" parent="CanvasLayer"]
+offset_left = 464.0
+offset_top = 404.0
+offset_right = 511.0
+offset_bottom = 435.0
+text = "Bake"
+
+[node name="FillingArea" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FillingRect" type="Button" parent="CanvasLayer/FillingArea"]
+offset_left = 4.0
+offset_top = 149.0
+offset_right = 439.0
+offset_bottom = 497.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/FillingArea"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 438.0
+offset_right = 410.0
+offset_bottom = 502.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="EggTargetLabel" type="Label" parent="CanvasLayer/FillingArea/GridContainer"]
+layout_mode = 2
+text = "Egg 0 / 2"
+
+[node name="ButterTargetLabel" type="Label" parent="CanvasLayer/FillingArea/GridContainer"]
+layout_mode = 2
+text = "Butter: 0g / 10g"
+
+[node name="DoughTargetLabel" type="Label" parent="CanvasLayer/FillingArea/GridContainer"]
+layout_mode = 2
+text = "Dough: 0g / 500g"
+
+[node name="SugerTargetLabel" type="Label" parent="CanvasLayer/FillingArea/GridContainer"]
+layout_mode = 2
+text = "Suger: 0g / 20g"
+
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/Egg" to="." method="_on_egg_button_down"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Egg" to="." method="_on_egg_pressed"]
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/Butter" to="." method="_on_butter_button_down"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Butter" to="." method="_on_butter_pressed"]
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/Dough" to="." method="_on_dough_button_down"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Dough" to="." method="_on_dough_pressed"]
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/Suger" to="." method="_on_suger_button_down"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Suger" to="." method="_on_suger_pressed"]
+[connection signal="pressed" from="CanvasLayer/BakeButton" to="." method="_on_bake_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/FillingArea/FillingRect" to="." method="_on_filling_rect_button_down"]
+[connection signal="button_up" from="CanvasLayer/FillingArea/FillingRect" to="." method="_on_filling_rect_button_up"]
