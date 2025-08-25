@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://3v37rkgifxsi"]
+
+[ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scenes/gameplay.gd" id="1_00tan"]
+[ext_resource type="Texture2D" uid="uid://d2hqluucclmhy" path="res://assets/cursor.png" id="1_7biu0"]
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_00tan")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FillingBox" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 214.0
+offset_top = 112.0
+offset_right = 414.0
+offset_bottom = 212.0
+
+[node name="RedBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
+offset_right = 200.0
+offset_bottom = 50.0
+color = Color(0.857033, 0.331396, 0.399928, 1)
+
+[node name="GreenCenter" type="ColorRect" parent="CanvasLayer/FillingBox"]
+offset_left = 150.0
+offset_right = 170.0
+offset_bottom = 50.0
+color = Color(0.421034, 0.945983, 0.680775, 1)
+
+[node name="Cursor" type="TextureRect" parent="CanvasLayer/FillingBox"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture = ExtResource("1_7biu0")
+
+[node name="FillingResultLabel" type="Label" parent="CanvasLayer/FillingBox"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+text = "+100%"
+
+[node name="StartPos" type="Control" parent="CanvasLayer/FillingBox"]
+anchors_preset = 0
+offset_left = -32.0
+offset_top = 50.0
+offset_right = -32.0
+offset_bottom = 50.0
