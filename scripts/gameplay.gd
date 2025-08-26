@@ -10,16 +10,16 @@ extends Node2D
 @onready var max_label: Label = $CanvasLayer/FillingBox/MaxLabel
 
 # Choose Area
-@onready var egg: Button = $CanvasLayer/Control/HBoxContainer/Egg
-@onready var butter: Button = $CanvasLayer/Control/HBoxContainer/Butter
-@onready var dough: Button = $CanvasLayer/Control/HBoxContainer/Dough
-@onready var suger: Button = $CanvasLayer/Control/HBoxContainer/Suger
-@onready var choose_box: TextureRect = $CanvasLayer/Control/ChooseBox
+@onready var egg: Button = $CanvasLayer/ChooseButton/HBoxContainer/Egg
+@onready var butter: Button = $CanvasLayer/ChooseButton/HBoxContainer/Butter
+@onready var dough: Button = $CanvasLayer/ChooseButton/HBoxContainer/Dough
+@onready var suger: Button = $CanvasLayer/ChooseButton/HBoxContainer/Suger
+@onready var choose_box: TextureRect = $CanvasLayer/ChooseButton/ChooseBox
 
-@onready var egg_target_label: Label = $CanvasLayer/FillingArea/GridContainer/EggTargetLabel
-@onready var butter_target_label: Label = $CanvasLayer/FillingArea/GridContainer/ButterTargetLabel
-@onready var dough_target_label: Label = $CanvasLayer/FillingArea/GridContainer/DoughTargetLabel
-@onready var suger_target_label: Label = $CanvasLayer/FillingArea/GridContainer/SugerTargetLabel
+@onready var egg_target_label: RichTextLabel = $CanvasLayer/FillingArea/GridContainer/EggTargetLabel
+@onready var butter_target_label: RichTextLabel = $CanvasLayer/FillingArea/GridContainer/ButterTargetLabel
+@onready var dough_target_label: RichTextLabel = $CanvasLayer/FillingArea/GridContainer/DoughTargetLabel
+@onready var suger_target_label: RichTextLabel = $CanvasLayer/FillingArea/GridContainer/SugerTargetLabel
 
 # mouse
 @onready var fill_target: Sprite2D = $CanvasLayer/FillTarget
@@ -35,12 +35,12 @@ enum CookState {
 
 var filling_speed: float = 200.0
 
-var cook_state: CookState
+var cook_state: CookState = CookState.None
 
-const egg_target_text = "Egg %s / 2"
-const butter_target_text = "Butter: %sg / 10g"
-const dough_target_text = "Dough: %sg / 500g"
-const suger_target_text = "Suger: %sg / 20g"
+const egg_target_text = "Egg: %s / %s"
+const butter_target_text = "Butter: %sg / %sg"
+const dough_target_text = "Dough: %sg / %sg"
+const suger_target_text = "Suger: %sg / %sg"
 
 const butter_min: int = 5
 const butter_max: int = 15
@@ -64,7 +64,10 @@ enum Filling {
 var cur_filling: Filling
 
 func _ready() -> void:
-	pass
+	egg_target_label.text = egg_target_text % [egg_cur, 2]
+	butter_target_label.text = butter_target_text % [butter_cur, butter_max]
+	dough_target_label.text = dough_target_text % [dough_cur, dough_max]
+	suger_target_label.text = suger_target_text % [suger_cur, suger_max]
 
 func _process(delta: float) -> void:
 	match cook_state:
@@ -113,32 +116,59 @@ func filling(delta: float) -> void:
 		print("cusor pos: %s", cursor.position)
 
 func stop_filling():
-	cal_result()
+	var res = cal_result()
 	set_cook_state(CookState.ReadyFill)
 	match cur_filling:
 		Filling.Egg:
-			pass
+			egg_cur += res
+			egg_target_label.text = egg_target_text % [egg_cur, 2]
+			if egg_cur > 2:
+				egg_target_label.text = egg_target_text % [str("[color=red]" + str(egg_cur) + "[/color]"), 2]
 		Filling.Butter:
-			pass
+			butter_cur += res
+			butter_target_label.text = butter_target_text % [butter_cur, butter_max]
+			if butter_cur > butter_max:
+				butter_target_label.text = butter_target_text % [str("[color=red]" + str(butter_cur) + "[/color]"), butter_max]
 		Filling.Dough:
-			pass
+			dough_cur += res
+			dough_target_label.text = dough_target_text % [dough_cur, dough_max]
+			if dough_cur > dough_max:
+				dough_target_label.text = dough_target_text % [str("[color=red]" + str(dough_cur) + "[/color]"), dough_max]
 		Filling.Suger:
-			pass
+			suger_cur += res
+			suger_target_label.text = suger_target_text % [suger_cur, suger_max]
+			if suger_cur > suger_max:
+				suger_target_label.text = suger_target_text % [str("[color=red]" + str(suger_cur) + "[/color]"), suger_max]
 	
 func cal_result() -> float:
 	filling_result_label.show()
-	filling_result_label.position = cursor.position - Vector2(0, filling_box.size.y)
+	filling_result_label.position.y = cursor.position.y - filling_box.size.y
 	filling_result_label.scale = Vector2(2, 2)
-	if green_center.position.x < cursor.position.x and cursor.position.x < green_center.position.x + green_center.size.x:
-		filling_result_label.text = "+100%"
-	else:
-		filling_result_label.text = "+0%"
+	
+	var diff = cursor.position.x - start_pos.position.x
+	var add: float
+	match cur_filling:
+		Filling.Egg:
+			add = 1
+		Filling.Butter:
+			add = butter_min + (butter_max - butter_min) * diff / filling_box.size.x
+		Filling.Dough:
+			add = dough_min + (dough_max - dough_min) * diff / filling_box.size.x
+		Filling.Suger:
+			add = suger_min + (suger_max - suger_min) * diff / filling_box.size.x
+			
+	add = round(add)
+	filling_result_label.text = "+%s" % add
+	#if green_center.position.x < cursor.position.x and cursor.position.x < green_center.position.x + green_center.size.x:
+		#filling_result_label.text = "+100%"
+	#else:
+		#filling_result_label.text = "+0%"
 		
 	var tween = get_tree().create_tween()
 	tween.tween_property(filling_result_label, "position", filling_result_label.position + Vector2.UP * 100, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(filling_result_label.hide)
 	tween.tween_callback(filling_box.hide)
-	return 0
+	return add
 
 func _on_egg_pressed() -> void:
 	pass
