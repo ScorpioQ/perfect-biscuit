@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://50qwtfrjgugt"]
+
+[ext_resource type="Texture2D" uid="uid://ih7t7huxngd" path="res://assets/biscuit.png" id="1_f5day"]
+[ext_resource type="Script" uid="uid://b03hjwghsosle" path="res://scripts/biscuit.gd" id="1_ug7ah"]
+
+[node name="Biscuit" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ug7ah")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_f5day")
+
+[node name="Rate" type="Label" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "95%"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,155 +1,137 @@
-[gd_scene load_steps=9 format=3 uid="uid://3v37rkgifxsi"]
+[gd_scene load_steps=28 format=3 uid="uid://3v37rkgifxsi"]
 
 [ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scripts/gameplay.gd" id="1_00tan"]
-[ext_resource type="Texture2D" uid="uid://d2hqluucclmhy" path="res://assets/cursor.png" id="1_7biu0"]
+[ext_resource type="PackedScene" uid="uid://50qwtfrjgugt" path="res://scenes/biscuit.tscn" id="2_ctvyo"]
 [ext_resource type="Texture2D" uid="uid://nnymmybilwe0" path="res://assets/choose_box.png" id="3_4bh5q"]
+[ext_resource type="Script" uid="uid://14aog3kb2pxv" path="res://scripts/people.gd" id="3_407ns"]
 [ext_resource type="Texture2D" uid="uid://c7kqflmyo4kb0" path="res://assets/egg.png" id="3_din8e"]
 [ext_resource type="Texture2D" uid="uid://do5lx6bqwwq4y" path="res://assets/butter.png" id="4_4bh5q"]
+[ext_resource type="Texture2D" uid="uid://ds7dnawb1b0xp" path="res://assets/people.png" id="4_w3w6i"]
 [ext_resource type="Texture2D" uid="uid://bhuo4kr77ngg2" path="res://assets/dough.png" id="5_e124b"]
 [ext_resource type="Texture2D" uid="uid://81cieqb5uyc8" path="res://assets/suger.png" id="6_101mb"]
+[ext_resource type="Texture2D" uid="uid://b6aam8hh3eut5" path="res://assets/progress_under.png" id="8_e124b"]
+[ext_resource type="Texture2D" uid="uid://dv2hripvrfvfm" path="res://assets/bowl.png" id="8_hbo4f"]
+[ext_resource type="Texture2D" uid="uid://bnega5r2tbxso" path="res://assets/progress_over.png" id="9_hbo4f"]
+[ext_resource type="Texture2D" uid="uid://cp1avfte3sx00" path="res://assets/baker.png" id="10_hbo4f"]
+[ext_resource type="Texture2D" uid="uid://v4u80t7dbsko" path="res://assets/coin.png" id="12_qixtg"]
+[ext_resource type="Script" uid="uid://dt5kvly37c121" path="res://scripts/star.gd" id="13_bhmdk"]
+[ext_resource type="Texture2D" uid="uid://caf75jamisqos" path="res://assets/star.png" id="13_nt65e"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_00tan"]
+[sub_resource type="PackedScene" id="PackedScene_pv71h"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("People", "layout_mode", "anchors_preset", "script", "Control", "TextureRect", "offset_right", "offset_bottom", "texture"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 5, 5, -1, 4, 1, 1, 6, 3, 7, 3, 8, 4, 0),
+"variants": [3, 0, ExtResource("3_407ns"), 40.0, ExtResource("4_w3w6i")],
+"version": 3
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbo4f"]
+atlas = ExtResource("10_hbo4f")
+region = Rect2(250, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctvyo"]
+atlas = ExtResource("10_hbo4f")
+region = Rect2(500, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qixtg"]
+atlas = ExtResource("10_hbo4f")
+region = Rect2(0, 0, 250, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nt65e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbo4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctvyo")
+}],
+"loop": true,
+"name": &"baking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qixtg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt65e"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhmdk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt65e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhmdk"]
+atlas = ExtResource("13_nt65e")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5y6v"]
+atlas = ExtResource("13_nt65e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_407ns"]
+atlas = ExtResource("13_nt65e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3w6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhmdk")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5y6v")
+}],
+"loop": true,
+"name": &"half",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_407ns")
+}],
+"loop": true,
+"name": &"none",
+"speed": 5.0
+}]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_00tan")
+biscuit_tscn = ExtResource("2_ctvyo")
+people_tscn = SubResource("PackedScene_pv71h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="FillingBox" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 535.0
-offset_top = 299.0
-offset_right = 735.0
-offset_bottom = 399.0
-
-[node name="RedBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
-material = SubResource("CanvasItemMaterial_00tan")
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 50.0
-color = Color(0.857033, 0.331396, 0.399928, 1)
-
-[node name="OrangeBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
-material = SubResource("CanvasItemMaterial_00tan")
-layout_mode = 0
-offset_left = 62.0
-offset_right = 187.0
-offset_bottom = 50.0
-color = Color(0.774511, 0.430915, 0.247652, 1)
-
-[node name="DarkGreenBack" type="ColorRect" parent="CanvasLayer/FillingBox"]
-layout_mode = 0
-offset_left = 128.0
-offset_right = 178.0
-offset_bottom = 50.0
-color = Color(0.227371, 0.622502, 0.430526, 1)
-
-[node name="GreenCenter" type="ColorRect" parent="CanvasLayer/FillingBox"]
-layout_mode = 0
-offset_left = 150.0
-offset_right = 170.0
-offset_bottom = 50.0
-color = Color(0.412953, 0.947574, 0.521636, 1)
-
-[node name="Cursor" type="TextureRect" parent="CanvasLayer/FillingBox"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_right = 32.0
-offset_bottom = 64.0
-grow_vertical = 2
-texture = ExtResource("1_7biu0")
-
-[node name="FillingResultLabel" type="Label" parent="CanvasLayer/FillingBox"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(2, 2)
-text = "+100%"
-
-[node name="StartPos" type="Control" parent="CanvasLayer/FillingBox"]
-anchors_preset = 0
-offset_left = -32.0
-offset_top = 50.0
-offset_right = -32.0
-offset_bottom = 50.0
-
-[node name="MinLabel" type="Label" parent="CanvasLayer/FillingBox"]
-layout_mode = 1
-offset_left = -10.0
-offset_top = -25.0
-offset_right = 30.0
-offset_bottom = -2.0
-text = "15g"
-
-[node name="MaxLabel" type="Label" parent="CanvasLayer/FillingBox"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -10.0
-offset_top = -25.0
-offset_right = 30.0
-offset_bottom = -2.0
-grow_horizontal = 0
-text = "30g"
-
-[node name="ChooseButton" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseButton"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -136.0
-offset_right = 556.0
-grow_vertical = 0
-
-[node name="Egg" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
-layout_mode = 2
-icon = ExtResource("3_din8e")
-
-[node name="Butter" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
-layout_mode = 2
-icon = ExtResource("4_4bh5q")
-
-[node name="Dough" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
-layout_mode = 2
-icon = ExtResource("5_e124b")
-
-[node name="Suger" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
-layout_mode = 2
-icon = ExtResource("6_101mb")
-
-[node name="ChooseBox" type="TextureRect" parent="CanvasLayer/ChooseButton"]
-visible = false
-layout_mode = 2
-offset_right = 128.0
-offset_bottom = 128.0
-texture = ExtResource("3_4bh5q")
-
-[node name="FillTarget" type="Sprite2D" parent="CanvasLayer"]
-visible = false
-texture = ExtResource("4_4bh5q")
+[node name="CookNumberLabel" type="Label" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 18.0
+offset_right = 326.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 40
+text = "Cook %s Biscuit"
 
 [node name="DebugCookStateLabel" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
@@ -161,68 +143,641 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "X"
 
-[node name="BakeButton" type="Button" parent="CanvasLayer"]
-offset_left = 464.0
-offset_top = 404.0
-offset_right = 511.0
-offset_bottom = 435.0
-text = "Bake"
+[node name="DebugFillingStateLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = 31.0
+offset_right = 35.0
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "X"
 
 [node name="FillingArea" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Bowl" type="TextureRect" parent="CanvasLayer/FillingArea"]
+offset_left = 63.0
+offset_top = -156.0
+offset_right = 363.0
+offset_bottom = 94.0
+texture = ExtResource("8_hbo4f")
+
+[node name="FillingRect" type="Button" parent="CanvasLayer/FillingArea"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 11.0
+offset_top = -204.0
+offset_right = 451.0
+offset_bottom = 190.0
+
+[node name="AddLabel" type="Label" parent="CanvasLayer/FillingArea"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 90.0
+offset_top = -178.0
+offset_right = 312.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Flour +1g"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FillingProgress" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FillingProgress"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = 55.0
+offset_right = 555.0
+offset_bottom = 189.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="EggFillLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Egg"
+horizontal_alignment = 2
+
+[node name="EggTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "10 / 20"
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EggMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="EggTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(25, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_over = ExtResource("8_e124b")
+texture_progress = ExtResource("9_hbo4f")
+
+[node name="EggMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ButterFillLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Butter"
+horizontal_alignment = 2
+
+[node name="ButterTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "100g / 200g"
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="ButterMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="ButterTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(25, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_over = ExtResource("8_e124b")
+texture_progress = ExtResource("9_hbo4f")
+
+[node name="ButterMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="SugerFillLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+text = "Suger"
+horizontal_alignment = 2
+
+[node name="SugerTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer3"]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "100g / 200g"
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="SugerMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="SugerTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(25, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_over = ExtResource("8_e124b")
+texture_progress = ExtResource("9_hbo4f")
+
+[node name="SugerMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+alignment = 1
+
+[node name="FlourFillLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer"]
+layout_mode = 2
+text = "Flour"
+horizontal_alignment = 2
+
+[node name="FlourTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(110, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "1000g / 1500g"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="FlourMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="FlourTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
+custom_minimum_size = Vector2(25, 80)
+layout_mode = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_over = ExtResource("8_e124b")
+texture_progress = ExtResource("9_hbo4f")
+
+[node name="FlourMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
+layout_mode = 2
+text = "20g"
+horizontal_alignment = 1
+
+[node name="ChooseButton" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseButton"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = -119.0
+offset_right = 376.0
+offset_bottom = -47.0
+grow_vertical = 0
+
+[node name="Egg" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("3_din8e")
+
+[node name="Butter" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("4_4bh5q")
+
+[node name="Suger" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("6_101mb")
+
+[node name="Flour" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("5_e124b")
+
+[node name="ChooseBox" type="TextureRect" parent="CanvasLayer/ChooseButton"]
+visible = false
+layout_mode = 2
+offset_right = 68.0
+offset_bottom = 68.0
+texture = ExtResource("3_4bh5q")
+
+[node name="NextButton" type="Button" parent="CanvasLayer"]
+offset_left = 502.0
+offset_top = 297.0
+offset_right = 572.0
+offset_bottom = 367.0
+text = "Next
+Step"
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_left = 424.0
+offset_top = 297.0
+offset_right = 494.0
+offset_bottom = 367.0
+text = "Back
+Step"
+
+[node name="ChooseNumber" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 67.0
+offset_top = 488.0
+offset_right = 467.0
+offset_bottom = 568.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseNumber"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChooseNumber/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "How
+many"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseNumber/HBoxContainer"]
+layout_mode = 2
+
+[node name="x1" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "x1"
+
+[node name="x3" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "x3"
+
+[node name="x5" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "x5"
+
+[node name="x10" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "x10"
+
+[node name="BestRateLabel" type="Label" parent="CanvasLayer"]
+offset_left = 117.0
+offset_top = 283.0
+offset_right = 326.0
+offset_bottom = 338.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Best: 0%"
+horizontal_alignment = 1
+
+[node name="FillTarget" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+texture = ExtResource("4_4bh5q")
+
+[node name="Baker" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(494, 172)
+sprite_frames = SubResource("SpriteFrames_nt65e")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.586493
+
+[node name="BakerBestRateLabel" type="Label" parent="CanvasLayer/Baker"]
+visible = false
+offset_left = -69.0
+offset_top = -4.0
+offset_right = 88.0
+offset_bottom = 38.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Best: 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Baker"]
+
+[node name="NoticeLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -517.0
+offset_top = 87.0
+offset_right = 490.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "notice"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShelvesMaker" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 700.0
+offset_top = 107.0
+offset_right = 700.0
+offset_bottom = 107.0
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer"]
+offset_left = 822.0
+offset_top = 14.0
+offset_right = 920.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/MoneyLabel"]
+position = Vector2(-26, 23)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_bhmdk")
+
+[node name="StarLabel" type="Label" parent="CanvasLayer"]
+offset_left = 983.0
+offset_top = 9.0
+offset_right = 1081.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 30
+text = "4.5"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_bhmdk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
+position = Vector2(-15, 51)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w3w6i")
+animation = &"half"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
+position = Vector2(18, 51)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w3w6i")
+animation = &"half"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
+position = Vector2(50, 51)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w3w6i")
+animation = &"half"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
+position = Vector2(82, 51)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w3w6i")
+animation = &"half"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
+position = Vector2(115, 51)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w3w6i")
+animation = &"half"
+
+[node name="Road" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="Start" type="Control" parent="CanvasLayer/Road"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 70.0
+offset_top = 150.0
+offset_right = 70.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="Start2" type="Control" parent="CanvasLayer/Road"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 150.0
+offset_right = -200.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="Start3" type="Control" parent="CanvasLayer/Road"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 500.0
+offset_right = -200.0
+offset_bottom = 500.0
+grow_horizontal = 0
+
+[node name="Start4" type="Control" parent="CanvasLayer/Road"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 70.0
+offset_top = 500.0
+offset_right = 70.0
+offset_bottom = 500.0
+grow_horizontal = 0
+
+[node name="Buy" type="Control" parent="CanvasLayer/Road"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_top = 253.0
+offset_right = -264.0
+offset_bottom = 253.0
+grow_horizontal = 0
+
+[node name="People" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="FillingRect" type="Button" parent="CanvasLayer/FillingArea"]
+[node name="One1" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 149.0
-offset_right = 439.0
-offset_bottom = 497.0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/FillingArea"]
+[node name="One2" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 430.0
-offset_right = 436.0
-offset_bottom = 494.0
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 10
-columns = 2
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
 
-[node name="EggTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingArea/GridContainer"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-bbcode_enabled = true
-text = "Egg 0 / 2"
+[node name="One3" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
 
-[node name="ButterTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingArea/GridContainer"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-bbcode_enabled = true
-text = "Butter: 0g / 10g"
+[node name="One4" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
 
-[node name="DoughTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingArea/GridContainer"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-bbcode_enabled = true
-text = "Dough: 0g / 500g"
+[node name="One5" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
 
-[node name="SugerTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingArea/GridContainer"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-bbcode_enabled = true
-text = "Suger: 0g / 20g"
+[node name="One6" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
 
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="." method="_on_egg_button_down"]
-[connection signal="pressed" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="." method="_on_egg_pressed"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="." method="_on_butter_button_down"]
-[connection signal="pressed" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="." method="_on_butter_pressed"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Dough" to="." method="_on_dough_button_down"]
-[connection signal="pressed" from="CanvasLayer/ChooseButton/HBoxContainer/Dough" to="." method="_on_dough_pressed"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="." method="_on_suger_button_down"]
-[connection signal="pressed" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="." method="_on_suger_pressed"]
-[connection signal="pressed" from="CanvasLayer/BakeButton" to="." method="_on_bake_button_pressed"]
+[node name="One7" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
+
+[node name="One8" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
+
+[node name="One9" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
+
+[node name="One10" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_w3w6i")
+script = ExtResource("3_407ns")
+
 [connection signal="button_down" from="CanvasLayer/FillingArea/FillingRect" to="." method="_on_filling_rect_button_down"]
 [connection signal="button_up" from="CanvasLayer/FillingArea/FillingRect" to="." method="_on_filling_rect_button_up"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="." method="_on_egg_button_down"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="." method="_on_butter_button_down"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="." method="_on_suger_button_down"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Flour" to="." method="_on_flour_button_down"]
+[connection signal="pressed" from="CanvasLayer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x1" to="." method="_on_x_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x3" to="." method="_on_x_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x5" to="." method="_on_x_5_pressed"]
+[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x10" to="." method="_on_x_10_pressed"]
