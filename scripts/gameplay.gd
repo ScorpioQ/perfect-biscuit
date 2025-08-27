@@ -49,6 +49,8 @@ extends Node2D
 @onready var back_button: Button = $CanvasLayer/BackButton
 
 @onready var shelves_maker: Control = $CanvasLayer/ShelvesMaker
+@onready var shelves_maker_2: Control = $CanvasLayer/ShelvesMaker2
+@onready var shelves_maker_3: Control = $CanvasLayer/ShelvesMaker3
 
 @onready var money_label: Label = $CanvasLayer/MoneyLabel
 @onready var star_label: Label = $CanvasLayer/StarLabel
@@ -65,7 +67,6 @@ extends Node2D
 
 
 @export var biscuit_tscn: PackedScene
-@export var people_tscn: PackedScene
 
 enum FillingState {
 	None,
@@ -84,6 +85,7 @@ enum CookState {
 enum BakerState {
 	None,
 	Working,
+	Trans,
 }
 
 var filling_state: FillingState = FillingState.None
@@ -136,6 +138,8 @@ var start_filling_progress: float
 var cook_number: int = 1
 
 var money: int = 0
+var score: float
+var score_num: int
 
 enum Filling {
 	None,
@@ -145,16 +149,17 @@ enum Filling {
 	Suger,
 }
 
+const shelves_len: int = 30
+const shelves_col_len: int = 10
+
+var baker_wait_num: int
+
 func _ready() -> void:
 	reset_progress_min_max()
 	set_cook_state(CookState.Number)
 	star_label.set_point(0)
-	for i in 10:
-		create_people()
-
-func create_people():
-	var p = people_tscn.instantiate()
-	self.add_child(p)
+	for i in shelves_len:
+		shelves.append(null)
 
 func _process(delta: float) -> void:
 	match filling_state:
@@ -168,18 +173,39 @@ func _process(delta: float) -> void:
 	match baker_state:
 		BakerState.Working:
 			if int(Time.get_unix_time_from_system()) - baker_start_working_time >= baker_working_time * baker_number:
-				baker_best_rate_label.hide()
-				baker_state = BakerState.None
-				baker.play("idle")
-				for i in baker_number:
-					await get_tree().create_timer(0.2).timeout
+				baker_state = BakerState.Trans
+				baker.play("full")
+				baker_wait_num = baker_number
+				
+		BakerState.Trans:
+			if baker_wait_num > 0:
+				var empty_idx = find_first_shelves_empty()
+				if empty_idx != -1:
+					baker_wait_num -= 1
 					var b = create_biscuit()
-					shelves.append(b)
+					b.shelve_idx = empty_idx
 					b.quality = randf_range(baking_best_rate - 0.05, baking_best_rate + 0.05)
 					b.taste = Biscuit.Taste.Normal
+					b.shelve_marker_pos = shelves_maker.global_position
+					b.shelve_marker_pos2 = shelves_maker_2.global_position
+					b.shelve_marker_pos3 = shelves_maker_3.global_position
 					b.update_rate(b.quality)
+					b.move()
+					shelves[empty_idx] = b
+				
+				if baker_wait_num == 0:
+					baker_best_rate_label.hide()
+					baker_state = BakerState.None
+					baker.play("idle")
 		_:
 			pass
+
+func find_first_shelves_empty() -> int:
+	for i in shelves_len:
+		if shelves[i] == null:
+			return i
+	
+	return -1
 
 func reset_progress_min_max():
 	egg_target_label.text = egg_target_text % [egg_cur, x1_egg_best * cook_number]
@@ -430,7 +456,7 @@ func _on_next_button_pressed() -> void:
 		CookState.Filling:
 			set_cook_state(CookState.Extra)
 		CookState.Extra:
-			if baker_state == BakerState.Working:
+			if baker_state != BakerState.None:
 				show_notice("Please wait. Baker is working")
 				return
 			if egg_cur == 0 and butter_cur == 0 and flour_cur == 0 and suger_cur == 0:
@@ -493,10 +519,13 @@ func create_biscuit() -> Control:
 	var biscuit = biscuit_tscn.instantiate()
 	biscuit.global_position = baker.global_position
 	self.add_child(biscuit)
-	var tween = get_tree().create_tween()
-	tween.tween_property(biscuit, "global_position", shelves_maker.global_position + Vector2(0, 35 * shelves.size()), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	return biscuit
 
 func add_money(add: int):
 	money += add
 	money_label.text = str(money)
+
+func add_score(s: int):
+	score = (score * score_num + s) / (score_num + 1)
+	score_num += 1
+	star_label.set_point(score)

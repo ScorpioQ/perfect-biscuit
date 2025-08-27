@@ -7,7 +7,7 @@ extends Label
 @onready var animated_sprite_2d_5: AnimatedSprite2D = $AnimatedSprite2D5
 
 func set_point(f: float):
-	self.text = str(f)
+	self.text = str("%0.1f" % f)
 	if 0 <= f and f < 0.5:
 		animated_sprite_2d.play("none")
 		animated_sprite_2d_2.play("none")
