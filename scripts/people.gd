@@ -8,7 +8,7 @@ extends Control
 @onready var start_6: Control = $"../../Road/Start6"
 @onready var buy: Control = $"../../Road/Buy"
 
-@onready var gameplay: Node2D = $"../../.."
+@onready var gameplay: CanvasLayer = $"../.."
 
 @onready var money_label: Label = $Label
 @onready var score_label: Label = $Label2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv2hripvrfvfm"
-path="res://.godot/imported/bowl.png-a7a6e5a8f55cce476a7b186522d01422.ctex"
+uid="uid://dxo5ia5n2o680"
+path="res://.godot/imported/butter_press.png-823d055c6b6cf71eb75bd244d48846ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bowl.png"
-dest_files=["res://.godot/imported/bowl.png-a7a6e5a8f55cce476a7b186522d01422.ctex"]
+source_file="res://assets/butter_press.png"
+dest_files=["res://.godot/imported/butter_press.png-823d055c6b6cf71eb75bd244d48846ed.ctex"]
 
 [params]
 

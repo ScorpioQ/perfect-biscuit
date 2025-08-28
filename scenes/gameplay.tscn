@@ -1,46 +1,70 @@
-[gd_scene load_steps=28 format=3 uid="uid://3v37rkgifxsi"]
+[gd_scene load_steps=40 format=3 uid="uid://3v37rkgifxsi"]
 
 [ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scripts/gameplay.gd" id="1_00tan"]
 [ext_resource type="PackedScene" uid="uid://50qwtfrjgugt" path="res://scenes/biscuit.tscn" id="2_ctvyo"]
-[ext_resource type="Texture2D" uid="uid://nnymmybilwe0" path="res://assets/choose_box.png" id="3_4bh5q"]
 [ext_resource type="Script" uid="uid://14aog3kb2pxv" path="res://scripts/people.gd" id="3_407ns"]
-[ext_resource type="Texture2D" uid="uid://c7kqflmyo4kb0" path="res://assets/egg.png" id="3_din8e"]
-[ext_resource type="Texture2D" uid="uid://do5lx6bqwwq4y" path="res://assets/butter.png" id="4_4bh5q"]
+[ext_resource type="Texture2D" uid="uid://lh66agratywj" path="res://assets/bg.png" id="3_w3w6i"]
 [ext_resource type="Texture2D" uid="uid://ds7dnawb1b0xp" path="res://assets/people.png" id="4_w3w6i"]
-[ext_resource type="Texture2D" uid="uid://bhuo4kr77ngg2" path="res://assets/dough.png" id="5_e124b"]
-[ext_resource type="Texture2D" uid="uid://81cieqb5uyc8" path="res://assets/suger.png" id="6_101mb"]
-[ext_resource type="Texture2D" uid="uid://b6aam8hh3eut5" path="res://assets/progress_under.png" id="8_e124b"]
-[ext_resource type="Texture2D" uid="uid://dv2hripvrfvfm" path="res://assets/bowl.png" id="8_hbo4f"]
-[ext_resource type="Texture2D" uid="uid://bnega5r2tbxso" path="res://assets/progress_over.png" id="9_hbo4f"]
-[ext_resource type="Texture2D" uid="uid://cp1avfte3sx00" path="res://assets/baker.png" id="10_hbo4f"]
+[ext_resource type="Texture2D" uid="uid://ih7t7huxngd" path="res://assets/biscuit.png" id="6_w3w6i"]
+[ext_resource type="Texture2D" uid="uid://dwhmwnfqd3poe" path="res://assets/butter_normal.png" id="8_25e7j"]
+[ext_resource type="Texture2D" uid="uid://d0s3fb2uhb6tf" path="res://assets/process_bg.png" id="8_cuhxg"]
+[ext_resource type="Texture2D" uid="uid://dqenusihcxfet" path="res://assets/process.png" id="9_cuhxg"]
+[ext_resource type="Texture2D" uid="uid://b8aurnm0itxm7" path="res://assets/suger_normal.png" id="9_t4x03"]
+[ext_resource type="Texture2D" uid="uid://dibv5dkg4omsf" path="res://assets/egg_normal.PNG" id="11_cuhxg"]
+[ext_resource type="Texture2D" uid="uid://dj0ak1dl2vr5j" path="res://assets/baker_fire1.png" id="12_525vb"]
 [ext_resource type="Texture2D" uid="uid://v4u80t7dbsko" path="res://assets/coin.png" id="12_qixtg"]
+[ext_resource type="Texture2D" uid="uid://dxo5ia5n2o680" path="res://assets/butter_press.png" id="12_t4x03"]
+[ext_resource type="Texture2D" uid="uid://cuje78oig6t07" path="res://assets/egg_press.PNG" id="12_vrqbj"]
+[ext_resource type="Texture2D" uid="uid://ewhkonn66tn4" path="res://assets/baker_fire2.png" id="13_25e7j"]
 [ext_resource type="Script" uid="uid://dt5kvly37c121" path="res://scripts/star.gd" id="13_bhmdk"]
 [ext_resource type="Texture2D" uid="uid://caf75jamisqos" path="res://assets/star.png" id="13_nt65e"]
+[ext_resource type="Texture2D" uid="uid://bpn7d7iih57er" path="res://assets/baker_fire3.png" id="14_t4x03"]
+[ext_resource type="Texture2D" uid="uid://dyqwdhfvwue0q" path="res://assets/suger_press.PNG" id="15_cuhxg"]
+[ext_resource type="Texture2D" uid="uid://v5i3oxvldsai" path="res://assets/baker_finish.png" id="15_ucu43"]
+[ext_resource type="Texture2D" uid="uid://q3b4bjmqiv6e" path="res://assets/baker_idle.png" id="16_cuhxg"]
+[ext_resource type="Texture2D" uid="uid://dq8oqxjwjaqed" path="res://assets/flour_press.PNG" id="17_cuhxg"]
+[ext_resource type="Texture2D" uid="uid://dcwpu4ni40c6q" path="res://assets/flour_normal.PNG" id="17_vrqbj"]
+[ext_resource type="Texture2D" uid="uid://clijmsv5yvxv3" path="res://assets/extra_btn_normal.png" id="22_t4x03"]
+[ext_resource type="Texture2D" uid="uid://cpa0ygtut4xar" path="res://assets/extra_btn_press.png" id="23_t4x03"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6b5a"]
-atlas = ExtResource("10_hbo4f")
-region = Rect2(500, 0, 250, 250)
+[sub_resource type="AtlasTexture" id="AtlasTexture_25e7j"]
+atlas = ExtResource("12_525vb")
+region = Rect2(0, 0, 239, 201)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mesn4"]
-atlas = ExtResource("10_hbo4f")
-region = Rect2(750, 0, 250, 250)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4x03"]
+atlas = ExtResource("13_25e7j")
+region = Rect2(0, 0, 239, 201)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w3w6i"]
-atlas = ExtResource("10_hbo4f")
-region = Rect2(0, 0, 250, 250)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucu43"]
+atlas = ExtResource("12_525vb")
+region = Rect2(0, 0, 239, 201)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pv71h"]
-atlas = ExtResource("10_hbo4f")
-region = Rect2(250, 0, 250, 250)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuhxg"]
+atlas = ExtResource("14_t4x03")
+region = Rect2(0, 0, 239, 201)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrqbj"]
+atlas = ExtResource("15_ucu43")
+region = Rect2(0, 0, 239, 201)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm2mb"]
+atlas = ExtResource("16_cuhxg")
+region = Rect2(0, 0, 239, 201)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nt65e"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m6b5a")
+"texture": SubResource("AtlasTexture_25e7j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mesn4")
+"texture": SubResource("AtlasTexture_t4x03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucu43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuhxg")
 }],
 "loop": true,
 "name": &"baking",
@@ -48,7 +72,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w3w6i")
+"texture": SubResource("AtlasTexture_vrqbj")
 }],
 "loop": true,
 "name": &"full",
@@ -56,7 +80,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pv71h")
+"texture": SubResource("AtlasTexture_gm2mb")
 }],
 "loop": true,
 "name": &"idle",
@@ -118,77 +142,58 @@ animations = [{
 }]
 
 [node name="Gameplay" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_00tan")
 biscuit_tscn = ExtResource("2_ctvyo")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_w3w6i")
 
-[node name="CookNumberLabel" type="Label" parent="CanvasLayer"]
-offset_left = 25.0
-offset_top = 18.0
-offset_right = 326.0
-offset_bottom = 73.0
-theme_override_font_sizes/font_size = 40
-text = "Cook %s Biscuit"
+[node name="Baker" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(662, 407)
+sprite_frames = SubResource("SpriteFrames_nt65e")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.664325
+centered = false
 
-[node name="DebugCookStateLabel" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
-offset_right = 35.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "X"
+[node name="BakerBestRateLabel" type="Label" parent="CanvasLayer/Baker"]
+visible = false
+offset_left = -69.0
+offset_top = -4.0
+offset_right = 88.0
+offset_bottom = 38.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Best: 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DebugFillingStateLabel" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
-offset_top = 31.0
-offset_right = 35.0
-offset_bottom = 54.0
-grow_horizontal = 2
-text = "X"
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Baker"]
 
 [node name="FillingArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
-
-[node name="Bowl" type="TextureRect" parent="CanvasLayer/FillingArea"]
-offset_left = 63.0
-offset_top = -156.0
-offset_right = 363.0
-offset_bottom = 94.0
-texture = ExtResource("8_hbo4f")
-
-[node name="FillingRect" type="Button" parent="CanvasLayer/FillingArea"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 11.0
-offset_top = -204.0
-offset_right = 451.0
-offset_bottom = 190.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
 
 [node name="AddLabel" type="Label" parent="CanvasLayer/FillingArea"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 90.0
-offset_top = -178.0
-offset_right = 312.0
-offset_bottom = -109.0
+offset_left = -296.0
+offset_top = 203.0
+offset_right = -74.0
+offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -198,27 +203,70 @@ vertical_alignment = 1
 
 [node name="FillingProgress" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FillingProgress"]
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = 55.0
-offset_right = 555.0
-offset_bottom = 189.0
+offset_left = -274.0
+offset_top = -14.0
+offset_right = 58.0
+offset_bottom = 242.0
 grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+alignment = 1
+
+[node name="FlourFillLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer"]
+layout_mode = 2
+text = "Flour"
+horizontal_alignment = 2
+
+[node name="FlourTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(110, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "1000g / 1500g"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="FlourMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
+layout_mode = 2
+text = "2000g"
+horizontal_alignment = 2
+
+[node name="FlourTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
+custom_minimum_size = Vector2(80, 25)
+layout_mode = 2
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("8_cuhxg")
+texture_progress = ExtResource("9_cuhxg")
+
+[node name="FlourMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "2000g"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
 layout_mode = 2
+alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -238,35 +286,31 @@ text = "10 / 20"
 autowrap_mode = 0
 horizontal_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="EggMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "20g"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="EggTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(25, 80)
+custom_minimum_size = Vector2(80, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-value = 100.0
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 3
-stretch_margin_top = 3
-stretch_margin_right = 3
-stretch_margin_bottom = 3
-texture_over = ExtResource("8_e124b")
-texture_progress = ExtResource("9_hbo4f")
+value = 40.0
+fill_mode = 1
+texture_under = ExtResource("8_cuhxg")
+texture_progress = ExtResource("9_cuhxg")
 
 [node name="EggMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "20g"
-horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
 layout_mode = 2
+alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -286,35 +330,31 @@ text = "100g / 200g"
 autowrap_mode = 0
 horizontal_alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
 [node name="ButterMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "20g"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="ButterTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(25, 80)
+custom_minimum_size = Vector2(80, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 value = 100.0
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 3
-stretch_margin_top = 3
-stretch_margin_right = 3
-stretch_margin_bottom = 3
-texture_over = ExtResource("8_e124b")
-texture_progress = ExtResource("9_hbo4f")
+fill_mode = 1
+texture_under = ExtResource("8_cuhxg")
+texture_progress = ExtResource("9_cuhxg")
 
 [node name="ButterMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "20g"
-horizontal_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
 layout_mode = 2
+alignment = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -334,220 +374,104 @@ text = "100g / 200g"
 autowrap_mode = 0
 horizontal_alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3"]
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3"]
 layout_mode = 2
 
 [node name="SugerMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 text = "20g"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="SugerTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
-custom_minimum_size = Vector2(25, 80)
+custom_minimum_size = Vector2(80, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 value = 100.0
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 3
-stretch_margin_top = 3
-stretch_margin_right = 3
-stretch_margin_bottom = 3
-texture_over = ExtResource("8_e124b")
-texture_progress = ExtResource("9_hbo4f")
+fill_mode = 1
+texture_under = ExtResource("8_cuhxg")
+texture_progress = ExtResource("9_cuhxg")
 
 [node name="SugerMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "20g"
-horizontal_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="FlourFillLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer5"]
 layout_mode = 2
-text = "Flour"
-horizontal_alignment = 2
+texture = ExtResource("6_w3w6i")
 
-[node name="FlourTargetLabel" type="RichTextLabel" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer"]
-custom_minimum_size = Vector2(110, 25)
+[node name="BiscuitNumberLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer5"]
 layout_mode = 2
-bbcode_enabled = true
-text = "1000g / 1500g"
-horizontal_alignment = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4"]
-layout_mode = 2
-
-[node name="FlourMax" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
-layout_mode = 2
-text = "20g"
-horizontal_alignment = 1
-
-[node name="FlourTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
-custom_minimum_size = Vector2(25, 80)
-layout_mode = 2
-value = 100.0
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 3
-stretch_margin_top = 3
-stretch_margin_right = 3
-stretch_margin_bottom = 3
-texture_over = ExtResource("8_e124b")
-texture_progress = ExtResource("9_hbo4f")
-
-[node name="FlourMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2"]
-layout_mode = 2
-text = "20g"
-horizontal_alignment = 1
+text = "x0"
 
 [node name="ChooseButton" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseButton"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 76.0
-offset_top = -119.0
-offset_right = 376.0
-offset_bottom = -47.0
+offset_left = -546.0
+offset_right = -214.0
+offset_bottom = 210.0
 grow_vertical = 0
 
-[node name="Egg" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+[node name="Egg" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-icon = ExtResource("3_din8e")
+texture_normal = ExtResource("11_cuhxg")
+texture_pressed = ExtResource("12_vrqbj")
 
-[node name="Butter" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+[node name="Butter" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-icon = ExtResource("4_4bh5q")
+texture_normal = ExtResource("8_25e7j")
+texture_pressed = ExtResource("12_t4x03")
 
-[node name="Suger" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+[node name="Suger" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-icon = ExtResource("6_101mb")
+texture_normal = ExtResource("9_t4x03")
+texture_pressed = ExtResource("15_cuhxg")
 
-[node name="Flour" type="Button" parent="CanvasLayer/ChooseButton/HBoxContainer"]
+[node name="Flour" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-icon = ExtResource("5_e124b")
+texture_normal = ExtResource("17_vrqbj")
+texture_pressed = ExtResource("17_cuhxg")
 
-[node name="ChooseBox" type="TextureRect" parent="CanvasLayer/ChooseButton"]
-visible = false
-layout_mode = 2
-offset_right = 68.0
-offset_bottom = 68.0
-texture = ExtResource("3_4bh5q")
-
-[node name="NextButton" type="Button" parent="CanvasLayer"]
-offset_left = 502.0
-offset_top = 297.0
-offset_right = 572.0
-offset_bottom = 367.0
-text = "Next
-Step"
-
-[node name="BackButton" type="Button" parent="CanvasLayer"]
-offset_left = 424.0
-offset_top = 297.0
-offset_right = 494.0
-offset_bottom = 367.0
-text = "Back
-Step"
-
-[node name="ChooseNumber" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 67.0
-offset_top = 488.0
-offset_right = 467.0
-offset_bottom = 568.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseNumber"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="CanvasLayer/ChooseNumber/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "How
-many"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChooseNumber/HBoxContainer"]
-layout_mode = 2
-
-[node name="x1" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "x1"
-
-[node name="x3" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "x3"
-
-[node name="x5" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "x5"
-
-[node name="x10" type="Button" parent="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "x10"
+[node name="ShelveButton" type="Button" parent="CanvasLayer"]
+offset_left = 311.0
+offset_top = 545.0
+offset_right = 381.0
+offset_bottom = 615.0
+text = "Shelve"
 
 [node name="BestRateLabel" type="Label" parent="CanvasLayer"]
-offset_left = 117.0
-offset_top = 283.0
-offset_right = 326.0
-offset_bottom = 338.0
+offset_left = 672.0
+offset_top = 244.0
+offset_right = 881.0
+offset_bottom = 299.0
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "Best: 0%"
 horizontal_alignment = 1
 
-[node name="FillTarget" type="Sprite2D" parent="CanvasLayer"]
-visible = false
-texture = ExtResource("4_4bh5q")
-
-[node name="Baker" type="AnimatedSprite2D" parent="CanvasLayer"]
-position = Vector2(494, 172)
-sprite_frames = SubResource("SpriteFrames_nt65e")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="BakerBestRateLabel" type="Label" parent="CanvasLayer/Baker"]
-visible = false
-offset_left = -69.0
-offset_top = -4.0
-offset_right = 88.0
-offset_bottom = 38.0
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 30
-text = "Best: 100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Baker"]
+[node name="BakeButton" type="Button" parent="CanvasLayer"]
+offset_left = 995.0
+offset_top = 475.0
+offset_right = 1065.0
+offset_bottom = 545.0
+text = "Bake"
 
 [node name="NoticeLabel" type="Label" parent="CanvasLayer"]
 visible = false
@@ -566,35 +490,11 @@ text = "notice"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShelvesMaker" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 660.0
-offset_top = 100.0
-offset_right = 660.0
-offset_bottom = 100.0
-
-[node name="ShelvesMaker2" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 710.0
-offset_top = 120.0
-offset_right = 710.0
-offset_bottom = 120.0
-
-[node name="ShelvesMaker3" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 750.0
-offset_top = 140.0
-offset_right = 750.0
-offset_bottom = 140.0
-
 [node name="MoneyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 822.0
-offset_top = 14.0
-offset_right = 920.0
-offset_bottom = 56.0
+offset_left = 74.0
+offset_top = 24.0
+offset_right = 172.0
+offset_bottom = 66.0
 theme_override_font_sizes/font_size = 30
 text = "0"
 
@@ -604,10 +504,10 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bhmdk")
 
 [node name="StarLabel" type="Label" parent="CanvasLayer"]
-offset_left = 983.0
-offset_top = 9.0
-offset_right = 1081.0
-offset_bottom = 51.0
+offset_left = 55.0
+offset_top = 89.0
+offset_right = 153.0
+offset_bottom = 131.0
 theme_override_font_sizes/font_size = 30
 text = "4.5"
 horizontal_alignment = 1
@@ -646,19 +546,16 @@ animation = &"half"
 
 [node name="Road" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
+anchors_preset = 0
 
 [node name="Start" type="Control" parent="CanvasLayer/Road"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 200.0
+offset_left = -160.0
 offset_top = 150.0
-offset_right = 200.0
+offset_right = -160.0
 offset_bottom = 150.0
 grow_horizontal = 0
 
@@ -667,9 +564,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
+offset_left = 100.0
 offset_top = 150.0
-offset_right = -150.0
+offset_right = 100.0
 offset_bottom = 150.0
 grow_horizontal = 0
 
@@ -678,9 +575,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
+offset_left = 100.0
 offset_top = 300.0
-offset_right = -150.0
+offset_right = 100.0
 offset_bottom = 300.0
 grow_horizontal = 0
 
@@ -689,9 +586,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
+offset_left = 100.0
 offset_top = 300.0
-offset_right = -150.0
+offset_right = 100.0
 offset_bottom = 300.0
 grow_horizontal = 0
 
@@ -700,9 +597,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
+offset_left = 100.0
 offset_top = 550.0
-offset_right = -150.0
+offset_right = 100.0
 offset_bottom = 550.0
 grow_horizontal = 0
 
@@ -711,9 +608,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 200.0
+offset_left = -160.0
 offset_top = 550.0
-offset_right = 200.0
+offset_right = -160.0
 offset_bottom = 550.0
 grow_horizontal = 0
 
@@ -722,9 +619,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -350.0
+offset_left = 200.0
 offset_top = 300.0
-offset_right = -350.0
+offset_right = 200.0
 offset_bottom = 300.0
 grow_horizontal = 0
 
@@ -736,11 +633,8 @@ offset_bottom = 40.0
 
 [node name="One1" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_left = 1003.0
-offset_top = 195.0
-offset_right = 1131.0
-offset_bottom = 323.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
@@ -773,13 +667,13 @@ text = "⭐"
 
 [node name="One2" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One2"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -788,6 +682,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One2"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -806,13 +701,13 @@ text = "⭐"
 
 [node name="One3" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One3"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -821,6 +716,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One3"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -839,13 +735,13 @@ text = "⭐"
 
 [node name="One4" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One4"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -854,6 +750,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One4"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -872,13 +769,13 @@ text = "⭐"
 
 [node name="One5" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One5"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -887,6 +784,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One5"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -905,13 +803,13 @@ text = "⭐"
 
 [node name="One6" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One6"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -920,6 +818,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One6"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -938,13 +837,13 @@ text = "⭐"
 
 [node name="One7" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One7"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -953,6 +852,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One7"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -971,13 +871,13 @@ text = "⭐"
 
 [node name="One8" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One8"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -986,6 +886,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One8"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -1004,13 +905,13 @@ text = "⭐"
 
 [node name="One9" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One9"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -1019,6 +920,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One9"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -1037,13 +939,13 @@ text = "⭐"
 
 [node name="One10" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
+offset_right = 85.0
+offset_bottom = 82.0
 texture = ExtResource("4_w3w6i")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One10"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = -36.0
 offset_right = 53.0
@@ -1052,6 +954,7 @@ theme_override_font_sizes/font_size = 30
 text = "+100"
 
 [node name="Label2" type="Label" parent="CanvasLayer/People/One10"]
+layout_mode = 0
 offset_left = 98.0
 offset_top = -38.0
 offset_right = 141.0
@@ -1068,15 +971,114 @@ offset_bottom = 51.0
 theme_override_font_sizes/font_size = 50
 text = "⭐"
 
-[connection signal="button_down" from="CanvasLayer/FillingArea/FillingRect" to="." method="_on_filling_rect_button_down"]
-[connection signal="button_up" from="CanvasLayer/FillingArea/FillingRect" to="." method="_on_filling_rect_button_up"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="." method="_on_egg_button_down"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="." method="_on_butter_button_down"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="." method="_on_suger_button_down"]
-[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Flour" to="." method="_on_flour_button_down"]
-[connection signal="pressed" from="CanvasLayer/NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x1" to="." method="_on_x_1_pressed"]
-[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x3" to="." method="_on_x_3_pressed"]
-[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x5" to="." method="_on_x_5_pressed"]
-[connection signal="pressed" from="CanvasLayer/ChooseNumber/HBoxContainer/HBoxContainer/x10" to="." method="_on_x_10_pressed"]
+[node name="ExtraButton" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ExtraButton"]
+layout_mode = 0
+offset_left = -163.0
+offset_top = -194.0
+offset_right = 10.0
+offset_bottom = -139.0
+
+[node name="Coconut" type="TextureButton" parent="CanvasLayer/ExtraButton/HBoxContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("22_t4x03")
+texture_pressed = ExtResource("23_t4x03")
+
+[node name="BlueBerry" type="TextureButton" parent="CanvasLayer/ExtraButton/HBoxContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("22_t4x03")
+texture_pressed = ExtResource("23_t4x03")
+
+[node name="Chocolate" type="TextureButton" parent="CanvasLayer/ExtraButton/HBoxContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("22_t4x03")
+texture_pressed = ExtResource("23_t4x03")
+
+[node name="Shelves" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShelvesMaker" type="Control" parent="CanvasLayer/Shelves"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 179.0
+offset_top = 148.0
+offset_right = 179.0
+offset_bottom = 148.0
+
+[node name="ShelvesMaker2" type="Control" parent="CanvasLayer/Shelves"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 229.0
+offset_top = 168.0
+offset_right = 229.0
+offset_bottom = 168.0
+
+[node name="ShelvesMaker3" type="Control" parent="CanvasLayer/Shelves"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 269.0
+offset_top = 188.0
+offset_right = 269.0
+offset_bottom = 188.0
+
+[node name="ExtraShelves" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="ExtraShelvesMaker" type="Control" parent="CanvasLayer/ExtraShelves"]
+anchors_preset = 0
+offset_left = 700.0
+offset_top = -100.0
+offset_right = 740.0
+offset_bottom = -60.0
+
+[node name="ExtraShelvesMaker2" type="Control" parent="CanvasLayer/ExtraShelves"]
+anchors_preset = 0
+offset_left = 700.0
+offset_top = -60.0
+offset_right = 740.0
+offset_bottom = -20.0
+
+[node name="ExtraShelvesMaker3" type="Control" parent="CanvasLayer/ExtraShelves"]
+anchors_preset = 0
+offset_left = 700.0
+offset_top = -20.0
+offset_right = 740.0
+offset_bottom = 20.0
+
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="CanvasLayer" method="_on_egg_button_down"]
+[connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="CanvasLayer" method="_on_egg_button_up"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="CanvasLayer" method="_on_butter_button_down"]
+[connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="CanvasLayer" method="_on_butter_button_up"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="CanvasLayer" method="_on_suger_button_down"]
+[connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="CanvasLayer" method="_on_suger_button_up"]
+[connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Flour" to="CanvasLayer" method="_on_flour_button_down"]
+[connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Flour" to="CanvasLayer" method="_on_flour_button_up"]
+[connection signal="pressed" from="CanvasLayer/ShelveButton" to="CanvasLayer" method="_on_shelve_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BakeButton" to="CanvasLayer" method="_on_bake_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/Coconut" to="CanvasLayer" method="_on_coconut_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/BlueBerry" to="CanvasLayer" method="_on_blue_berry_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/Chocolate" to="CanvasLayer" method="_on_chocolate_pressed"]

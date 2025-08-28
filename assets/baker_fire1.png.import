@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp1avfte3sx00"
-path="res://.godot/imported/baker.png-56c48fb70a423037d351079eaa3419fd.ctex"
+uid="uid://dj0ak1dl2vr5j"
+path="res://.godot/imported/baker_fire1.png-5e35a47da4fc9b4a5e11b35a4b113d3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/baker.png"
-dest_files=["res://.godot/imported/baker.png-56c48fb70a423037d351079eaa3419fd.ctex"]
+source_file="res://assets/baker_fire1.png"
+dest_files=["res://.godot/imported/baker_fire1.png-5e35a47da4fc9b4a5e11b35a4b113d3d.ctex"]
 
 [params]
 
