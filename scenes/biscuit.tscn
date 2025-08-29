@@ -1,20 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://50qwtfrjgugt"]
+[gd_scene load_steps=6 format=3 uid="uid://50qwtfrjgugt"]
 
-[ext_resource type="Texture2D" uid="uid://ih7t7huxngd" path="res://assets/biscuit.png" id="1_f5day"]
 [ext_resource type="Script" uid="uid://b03hjwghsosle" path="res://scripts/biscuit.gd" id="1_ug7ah"]
+[ext_resource type="Texture2D" uid="uid://c1bvxqc138c3s" path="res://assets/biscuit_normal.png" id="2_ug7ah"]
+[ext_resource type="Texture2D" uid="uid://s3seyya28xdo" path="res://assets/biscuit_pieapple.png" id="3_7b2ar"]
+[ext_resource type="Texture2D" uid="uid://da2wjie81o3jr" path="res://assets/biscuit_blueberry.png" id="4_27tx6"]
+[ext_resource type="Texture2D" uid="uid://u30kpbtprjhg" path="res://assets/biscuit_strawberry.png" id="5_b21vy"]
 
 [node name="Biscuit" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ug7ah")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Normal" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_f5day")
+offset_right = 34.0
+offset_bottom = 28.0
+texture = ExtResource("2_ug7ah")
+
+[node name="Pineapple" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 28.0
+texture = ExtResource("3_7b2ar")
+
+[node name="Blueberry" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 28.0
+texture = ExtResource("4_27tx6")
+
+[node name="Strawberry" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 28.0
+texture = ExtResource("5_b21vy")
 
 [node name="Rate" type="Label" parent="."]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
 offset_right = 40.0

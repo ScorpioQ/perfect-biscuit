@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do5lx6bqwwq4y"
-path="res://.godot/imported/butter.png-2b4c09691c1167bfac53cbffc1e82862.ctex"
+uid="uid://s3seyya28xdo"
+path="res://.godot/imported/biscuit_pieapple.png-4fa7f205eb62f2d5256c52fb771277bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/butter.png"
-dest_files=["res://.godot/imported/butter.png-2b4c09691c1167bfac53cbffc1e82862.ctex"]
+source_file="res://assets/biscuit_pieapple.png"
+dest_files=["res://.godot/imported/biscuit_pieapple.png-4fa7f205eb62f2d5256c52fb771277bd.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqnat6eqs4i1r"
-path="res://.godot/imported/flour.png-9b9aa2848da56d3f6098d007aac76080.ctex"
+uid="uid://c36rtotgyh038"
+path="res://.godot/imported/process_flour_over.png-4adf667a6a09d220c552aaeb93334e28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/flour.png"
-dest_files=["res://.godot/imported/flour.png-9b9aa2848da56d3f6098d007aac76080.ctex"]
+source_file="res://assets/process_flour_over.png"
+dest_files=["res://.godot/imported/process_flour_over.png-4adf667a6a09d220c552aaeb93334e28.ctex"]
 
 [params]
 

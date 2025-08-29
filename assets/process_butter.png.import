@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://81cieqb5uyc8"
-path="res://.godot/imported/suger.png-0c89f5d81519e458bd635ee649099a44.ctex"
+uid="uid://7nnnbf4l2nd6"
+path="res://.godot/imported/process_butter.png-1d5307a34ac2f3d87236548bb5be03c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/suger.png"
-dest_files=["res://.godot/imported/suger.png-0c89f5d81519e458bd635ee649099a44.ctex"]
+source_file="res://assets/process_butter.png"
+dest_files=["res://.godot/imported/process_butter.png-1d5307a34ac2f3d87236548bb5be03c7.ctex"]
 
 [params]
 
