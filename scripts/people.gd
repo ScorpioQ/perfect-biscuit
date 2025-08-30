@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 	start_end_step += delta
 	self.global_position = start_pos.lerp(target_pos, start_end_step / speed)
 	if target_idx >= 0 and self.global_position.distance_to(target_pos) < 5:
-		if target_idx == 2 and !rand_buy:
+		if target_idx == 2 and !rand_buy and !gameplay.is_shelves_empty():
 			rand_buy = true
 		target_idx += 1
 		start_end_step = 0
@@ -96,17 +96,16 @@ func buy_biscuit():
 	var pick_idx = tmp_arr.pick_random()
 	var biscuit = gameplay.shelves[pick_idx]
 	
-	if randf() < biscuit.quality:
-		var money: int
-		if biscuit.taste == Biscuit.Taste.Normal:
-			money = 100
-		else:
-			money = 200
-			
-		gameplay.add_money(money)
-		gameplay.shelves[pick_idx] = null
-		show_money(money)
-		biscuit.queue_free()
+	var money: int
+	if biscuit.taste == Biscuit.Taste.Normal:
+		money = clamp(int(100 * biscuit.quality), 1, 300)
+	else:
+		money = clamp(int(200 * biscuit.quality), 1, 300)
+		
+	gameplay.add_money(money)
+	gameplay.shelves[pick_idx] = null
+	show_money(money)
+	biscuit.queue_free()
 
 func show_money(money: int):
 	money_label.show()

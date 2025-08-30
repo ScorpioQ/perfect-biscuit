@@ -7,6 +7,7 @@ class_name Biscuit
 @onready var pineapple: TextureRect = $Pineapple
 @onready var blueberry: TextureRect = $Blueberry
 @onready var strawberry: TextureRect = $Strawberry
+@onready var normal_2: TextureRect = $Normal2
 
 enum Taste {
 	Normal,
@@ -34,6 +35,9 @@ func _ready() -> void:
 
 func update_rate(f: float):
 	rate.text = str(int(f * 100)) + "%"
+
+func set_quality(q: float):
+	quality = clampf(q, 0, 1)
 
 func move_to_extra_shelves():
 	var target_pos = extra_shelve_marker_pos

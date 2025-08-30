@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://3v37rkgifxsi"]
+[gd_scene load_steps=100 format=3 uid="uid://3v37rkgifxsi"]
 
 [ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scripts/gameplay.gd" id="1_00tan"]
 [ext_resource type="PackedScene" uid="uid://50qwtfrjgugt" path="res://scenes/biscuit.tscn" id="2_ctvyo"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://dfyfvxksslhd8" path="res://assets/shelve_btn_press.png" id="37_ww381"]
 [ext_resource type="Texture2D" uid="uid://bqm6smsrvss8n" path="res://assets/btn_press.png" id="37_yjd84"]
 [ext_resource type="AudioStream" uid="uid://bftpgbftxjgc2" path="res://assets/trash.wav" id="38_32tgx"]
+[ext_resource type="AudioStream" uid="uid://dueovpiwvn2tq" path="res://assets/btn.mp3" id="41_0dpug"]
 [ext_resource type="Texture2D" uid="uid://g0gct3kcw02f" path="res://assets/IMG_2274-removebg-preview.png" id="44_krsgc"]
 [ext_resource type="Texture2D" uid="uid://bu3ivqtccsskc" path="res://assets/IMG_2275-removebg-preview.png" id="46_2x1bi"]
 [ext_resource type="Texture2D" uid="uid://dduup5oyqwei" path="res://assets/IMG_2276-removebg-preview.png" id="47_pufsh"]
@@ -53,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://sle8rmeol16" path="res://assets/IMG_2278-removebg-preview.png" id="49_m7mob"]
 [ext_resource type="Texture2D" uid="uid://c102mllbbqe8n" path="res://assets/IMG_2279-removebg-preview.png" id="50_hagvn"]
 [ext_resource type="Texture2D" uid="uid://cb4jn5grm71ln" path="res://assets/IMG_2281-removebg-preview.png" id="51_7p6a1"]
+[ext_resource type="Texture2D" uid="uid://ds8450oryt7b5" path="res://assets/IMG_2280-removebg-preview.png" id="52_2x1bi"]
 [ext_resource type="Texture2D" uid="uid://0eb7n6rov8gm" path="res://assets/IMG_2282-removebg-preview.png" id="52_66oyn"]
 [ext_resource type="Texture2D" uid="uid://5nc3pk1yeimr" path="res://assets/IMG_2283-removebg-preview.png" id="53_j0jq8"]
 [ext_resource type="Texture2D" uid="uid://djpgh6oaanl60" path="res://assets/IMG_2284-removebg-preview.png" id="54_rvt3g"]
@@ -61,6 +63,20 @@
 [ext_resource type="Texture2D" uid="uid://d3a0jc316l53l" path="res://assets/grape.png" id="59_234o1"]
 [ext_resource type="Texture2D" uid="uid://dry4kktmknfv1" path="res://assets/strawberry.png" id="60_krsgc"]
 [ext_resource type="Texture2D" uid="uid://x6avgffffoci" path="res://assets/notice_bg.png" id="61_krsgc"]
+[ext_resource type="AudioStream" uid="uid://bd2j6o5iete51" path="res://assets/bgm.mp3" id="63_pufsh"]
+[ext_resource type="Texture2D" uid="uid://cqc2a1oewnyh2" path="res://assets/shop_normal.png" id="64_hagvn"]
+[ext_resource type="Texture2D" uid="uid://cvqm1sr8tnokq" path="res://assets/shop_press.png" id="65_7p6a1"]
+[ext_resource type="Texture2D" uid="uid://c26hkdmp48ocg" path="res://assets/shop_bg.png" id="66_7p6a1"]
+[ext_resource type="Texture2D" uid="uid://2i60orvmmp55" path="res://assets/flour_btn_normal.png" id="67_j0jq8"]
+[ext_resource type="Texture2D" uid="uid://dttwe4oawuaid" path="res://assets/flour_btn_press.png" id="68_rvt3g"]
+[ext_resource type="Texture2D" uid="uid://q128lc65d77n" path="res://assets/butter_btn_normal.png" id="69_h184a"]
+[ext_resource type="Texture2D" uid="uid://bdxp2lg3poivd" path="res://assets/butter_btn_press.png" id="70_i6c88"]
+[ext_resource type="Texture2D" uid="uid://086oii2hfc0h" path="res://assets/suger_btn_normal.png" id="71_wtkuf"]
+[ext_resource type="Texture2D" uid="uid://cr4kk3hjdtd6l" path="res://assets/suger_btn_press.png" id="72_idvdn"]
+[ext_resource type="Texture2D" uid="uid://cxocnxl2fqh4i" path="res://assets/egg_btn_normal.png" id="73_l0dqw"]
+[ext_resource type="Texture2D" uid="uid://carfns3pmmcwy" path="res://assets/egg_btn_press.png" id="74_u6g5h"]
+[ext_resource type="Texture2D" uid="uid://bhp1i7q8kuys1" path="res://assets/close_normal.png" id="75_0hkxr"]
+[ext_resource type="Texture2D" uid="uid://du0fvutdbe4a0" path="res://assets/close_press.png" id="76_qlwvc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25e7j"]
 atlas = ExtResource("12_525vb")
@@ -676,6 +692,16 @@ offset_bottom = 859.0
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("23_s6y8e")
 
+[node name="EggOriLabel" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Egg"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 74.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "200g"
+
 [node name="Butter" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -690,6 +716,16 @@ offset_right = 617.0
 offset_bottom = 654.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("26_s1tv7")
+
+[node name="ButterOriLabel" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Butter"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 74.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "180g"
 
 [node name="Suger" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -706,6 +742,16 @@ offset_bottom = 735.0
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("29_37dvx")
 
+[node name="SugerOriLabel" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Suger"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 74.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "120g"
+
 [node name="Flour" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -720,6 +766,16 @@ offset_right = 274.0
 offset_bottom = 309.0
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("32_p5dy6")
+
+[node name="FlourOriLabel" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Flour"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 74.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "240g"
 
 [node name="TrashButton" type="TextureButton" parent="CanvasLayer"]
 offset_left = 400.0
@@ -741,6 +797,9 @@ offset_bottom = 617.0
 texture_normal = ExtResource("36_wexui")
 texture_pressed = ExtResource("37_ww381")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/ShelveButton"]
+stream = ExtResource("41_0dpug")
+
 [node name="BestRateLabel" type="Label" parent="CanvasLayer"]
 offset_left = 259.0
 offset_top = 67.0
@@ -759,6 +818,9 @@ offset_bottom = 638.0
 scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("36_slt2r")
 texture_pressed = ExtResource("37_yjd84")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/BakeButton"]
+stream = ExtResource("41_0dpug")
 
 [node name="MoneyLabel" type="Label" parent="CanvasLayer"]
 offset_left = 88.0
@@ -854,6 +916,12 @@ offset_right = 90.0
 offset_bottom = 350.0
 grow_horizontal = 0
 
+[node name="Biscuit" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="People" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -885,7 +953,7 @@ text = "+100"
 position = Vector2(6, -18)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_mgl3x")
-frame_progress = 0.0762132
+frame_progress = 0.274406
 
 [node name="One2" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
@@ -1063,7 +1131,7 @@ offset_right = 138.0
 offset_bottom = 384.0
 scale = Vector2(0.4, 0.4)
 pivot_offset = Vector2(100, 100)
-texture = ExtResource("51_7p6a1")
+texture = ExtResource("52_2x1bi")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One8"]
@@ -1260,6 +1328,9 @@ offset_bottom = 291.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("60_krsgc")
 
+[node name="ExtraBtnSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/ExtraButton/HBoxContainer"]
+stream = ExtResource("41_0dpug")
+
 [node name="Shelves" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -1348,6 +1419,142 @@ text = "Need"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ShopButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 1070.0
+offset_top = 12.0
+offset_right = 1166.0
+offset_bottom = 115.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("64_hagvn")
+texture_pressed = ExtResource("65_7p6a1")
+
+[node name="ShopSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/ShopButton"]
+stream = ExtResource("41_0dpug")
+
+[node name="Shop" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Shop"]
+layout_mode = 2
+offset_left = 172.0
+offset_top = 59.0
+offset_right = 987.0
+offset_bottom = 557.0
+texture = ExtResource("66_7p6a1")
+
+[node name="ShopFlour" type="TextureButton" parent="CanvasLayer/Shop"]
+layout_mode = 2
+offset_left = 251.0
+offset_top = 157.0
+offset_right = 347.0
+offset_bottom = 260.0
+texture_normal = ExtResource("67_j0jq8")
+texture_pressed = ExtResource("68_rvt3g")
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/Shop/ShopFlour"]
+offset_left = -5.0
+offset_top = 103.0
+offset_right = 93.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "100g / 100"
+
+[node name="MoneyAnim" type="AnimatedSprite2D" parent="CanvasLayer/Shop/ShopFlour/MoneyLabel"]
+position = Vector2(110, 17)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bhmdk")
+
+[node name="ShopButter" type="TextureButton" parent="CanvasLayer/Shop"]
+layout_mode = 2
+offset_left = 409.0
+offset_top = 157.0
+offset_right = 505.0
+offset_bottom = 260.0
+texture_normal = ExtResource("69_h184a")
+texture_pressed = ExtResource("70_i6c88")
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/Shop/ShopButter"]
+offset_left = -3.0
+offset_top = 106.0
+offset_right = 95.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "100g / 100"
+
+[node name="MoneyAnim" type="AnimatedSprite2D" parent="CanvasLayer/Shop/ShopButter/MoneyLabel"]
+position = Vector2(110, 17)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bhmdk")
+
+[node name="ShopSuger" type="TextureButton" parent="CanvasLayer/Shop"]
+layout_mode = 2
+offset_left = 577.0
+offset_top = 157.0
+offset_right = 673.0
+offset_bottom = 260.0
+texture_normal = ExtResource("71_wtkuf")
+texture_pressed = ExtResource("72_idvdn")
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/Shop/ShopSuger"]
+offset_left = -3.0
+offset_top = 107.0
+offset_right = 95.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "100g / 100"
+
+[node name="MoneyAnim" type="AnimatedSprite2D" parent="CanvasLayer/Shop/ShopSuger/MoneyLabel"]
+position = Vector2(110, 17)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bhmdk")
+
+[node name="ShopEgg" type="TextureButton" parent="CanvasLayer/Shop"]
+layout_mode = 2
+offset_left = 742.0
+offset_top = 156.0
+offset_right = 838.0
+offset_bottom = 259.0
+texture_normal = ExtResource("73_l0dqw")
+texture_pressed = ExtResource("74_u6g5h")
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/Shop/ShopEgg"]
+offset_left = -1.0
+offset_top = 106.0
+offset_right = 97.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "100g / 100"
+
+[node name="MoneyAnim" type="AnimatedSprite2D" parent="CanvasLayer/Shop/ShopEgg/MoneyLabel"]
+position = Vector2(110, 17)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bhmdk")
+
+[node name="ShopBtnSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/Shop"]
+stream = ExtResource("41_0dpug")
+
+[node name="Close" type="TextureButton" parent="CanvasLayer/Shop"]
+layout_mode = 0
+offset_left = 906.0
+offset_top = 46.0
+offset_right = 1002.0
+offset_bottom = 149.0
+texture_normal = ExtResource("75_0hkxr")
+texture_pressed = ExtResource("76_qlwvc")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("63_pufsh")
+autoplay = true
+parameters/looping = true
+
 [connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="CanvasLayer" method="_on_egg_button_down"]
 [connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="CanvasLayer" method="_on_egg_button_up"]
 [connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="CanvasLayer" method="_on_butter_button_down"]
@@ -1362,3 +1569,9 @@ vertical_alignment = 1
 [connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/Pineapple" to="CanvasLayer" method="_on_pineapple_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/Blueberry" to="CanvasLayer" method="_on_blueberry_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/Strawberry" to="CanvasLayer" method="_on_strawberry_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopButton" to="CanvasLayer" method="_on_shop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/ShopFlour" to="CanvasLayer" method="_on_shop_flour_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/ShopButter" to="CanvasLayer" method="_on_shop_butter_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/ShopSuger" to="CanvasLayer" method="_on_shop_suger_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/ShopEgg" to="CanvasLayer" method="_on_shop_egg_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Close" to="CanvasLayer" method="_on_close_pressed"]
