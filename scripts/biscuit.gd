@@ -43,7 +43,7 @@ func move_to_extra_shelves():
 		target_pos = extra_shelve_marker_pos3
 		
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", target_pos - Vector2(20 * (extra_shelve_idx % 10), 0), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", target_pos - Vector2(19 * (extra_shelve_idx % 10), 0), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func move_to_shelves():
 	var target_pos = shelve_marker_pos + Vector2(randf_range(-24, 24), randf_range(-16, 16))

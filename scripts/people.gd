@@ -11,7 +11,8 @@ extends Control
 @onready var gameplay: CanvasLayer = $"../.."
 
 @onready var money_label: Label = $Label
-@onready var score_label: Label = $Label2
+@onready var money_anim: AnimatedSprite2D = $"../../MoneyLabel/MoneyAnim"
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var target_pos: Vector2
 var start_pos: Vector2
@@ -43,7 +44,11 @@ func _ready() -> void:
 	target_idx = 1
 	set_target_pos(start_2.global_position)
 	money_label.hide()
-	score_label.hide()
+	animated_sprite_2d.hide()
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(money_label, "position", money_label.position + Vector2.UP * 50, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 
 func set_target_pos(p: Vector2):
 	start_pos = global_position
@@ -86,10 +91,6 @@ func buy_biscuit():
 			tmp_arr.append(i)
 
 	if tmp_arr.size() <= 0:
-		if randf() < 0.5:
-			var score = randf_range(0.0, 3.0)
-			gameplay.add_score(score)
-			show_score(score)
 		return
 	
 	var pick_idx = tmp_arr.pick_random()
@@ -97,36 +98,24 @@ func buy_biscuit():
 	
 	if randf() < biscuit.quality:
 		var money: int
-		var score: float
 		if biscuit.taste == Biscuit.Taste.Normal:
 			money = 100
-			score = randf_range(2.0, 4.0)
 		else:
 			money = 200
-			score = randf_range(3.0, 5.0)
 			
 		gameplay.add_money(money)
-		gameplay.add_score(score)
 		gameplay.shelves[pick_idx] = null
 		show_money(money)
-		show_score(score)
 		biscuit.queue_free()
-	else:
-		var score = randf_range(0.0, 3.0)
-		gameplay.add_score(score)
-		show_score(score)
 
 func show_money(money: int):
-	money_label.position = Vector2(69, 42)
+	money_label.show()
+	money_label.position = Vector2(18, -38)
 	money_label.text = "+" + str(money)
 	var tween = get_tree().create_tween()
 	tween.tween_property(money_label, "position", money_label.position + Vector2.UP * 50, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(money_label.hide)
-
-func show_score(score: float):
-	score_label.position = Vector2(43, 42)
-	score_label.text = str(score)
-	var tween = get_tree().create_tween()
-	tween.tween_property(score_label, "position", score_label.position + Vector2.UP * 50, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(score_label.hide)
-	
+	animated_sprite_2d.show()
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(animated_sprite_2d, "global_position", money_anim.global_position, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween2.tween_callback(animated_sprite_2d.hide)

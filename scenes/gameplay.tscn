@@ -1,12 +1,13 @@
-[gd_scene load_steps=47 format=3 uid="uid://3v37rkgifxsi"]
+[gd_scene load_steps=84 format=3 uid="uid://3v37rkgifxsi"]
 
 [ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scripts/gameplay.gd" id="1_00tan"]
 [ext_resource type="PackedScene" uid="uid://50qwtfrjgugt" path="res://scenes/biscuit.tscn" id="2_ctvyo"]
 [ext_resource type="Script" uid="uid://14aog3kb2pxv" path="res://scripts/people.gd" id="3_407ns"]
+[ext_resource type="PackedScene" uid="uid://dwhobhmnaqqth" path="res://scenes/money.tscn" id="3_slt2r"]
 [ext_resource type="Texture2D" uid="uid://lh66agratywj" path="res://assets/bg.png" id="3_w3w6i"]
-[ext_resource type="Texture2D" uid="uid://ds7dnawb1b0xp" path="res://assets/people.png" id="4_w3w6i"]
 [ext_resource type="Texture2D" uid="uid://dwhmwnfqd3poe" path="res://assets/butter_normal.png" id="8_25e7j"]
 [ext_resource type="Texture2D" uid="uid://d0s3fb2uhb6tf" path="res://assets/process_bg.png" id="8_cuhxg"]
+[ext_resource type="AudioStream" uid="uid://cnds77btnl5gf" path="res://assets/bake.mp3" id="9_o7tkd"]
 [ext_resource type="Texture2D" uid="uid://uwc3v5uyoa6k" path="res://assets/clock_progress_bg.png" id="9_rqnht"]
 [ext_resource type="Texture2D" uid="uid://b8aurnm0itxm7" path="res://assets/suger_normal.PNG" id="9_t4x03"]
 [ext_resource type="Texture2D" uid="uid://bvomglqm71xs6" path="res://assets/process_flour.png" id="10_gm2mb"]
@@ -16,14 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://c3e7wjb0fjlc" path="res://assets/process_egg.png" id="11_jhs7r"]
 [ext_resource type="Texture2D" uid="uid://c1bvxqc138c3s" path="res://assets/biscuit_normal.png" id="11_vrqbj"]
 [ext_resource type="Texture2D" uid="uid://7nnnbf4l2nd6" path="res://assets/process_butter.png" id="12_28f34"]
+[ext_resource type="AudioStream" uid="uid://cxgq3nwo6wl61" path="res://assets/clock.mp3" id="12_81iov"]
 [ext_resource type="Texture2D" uid="uid://dj0ak1dl2vr5j" path="res://assets/baker_fire1.png" id="12_525vb"]
 [ext_resource type="Texture2D" uid="uid://v4u80t7dbsko" path="res://assets/coin.png" id="12_qixtg"]
 [ext_resource type="Texture2D" uid="uid://dxo5ia5n2o680" path="res://assets/butter_press.png" id="12_t4x03"]
 [ext_resource type="Texture2D" uid="uid://cuje78oig6t07" path="res://assets/egg_press.PNG" id="12_vrqbj"]
 [ext_resource type="Texture2D" uid="uid://ewhkonn66tn4" path="res://assets/baker_fire2.png" id="13_25e7j"]
 [ext_resource type="Texture2D" uid="uid://bo0dadceouvea" path="res://assets/process_suger.png" id="13_28f34"]
-[ext_resource type="Script" uid="uid://dt5kvly37c121" path="res://scripts/star.gd" id="13_bhmdk"]
-[ext_resource type="Texture2D" uid="uid://caf75jamisqos" path="res://assets/star.png" id="13_nt65e"]
 [ext_resource type="Texture2D" uid="uid://bpn7d7iih57er" path="res://assets/baker_fire3.png" id="14_t4x03"]
 [ext_resource type="Texture2D" uid="uid://dyqwdhfvwue0q" path="res://assets/suger_press.PNG" id="15_cuhxg"]
 [ext_resource type="Texture2D" uid="uid://v5i3oxvldsai" path="res://assets/baker_finish.png" id="15_ucu43"]
@@ -31,8 +31,36 @@
 [ext_resource type="Texture2D" uid="uid://borisnrpxhq67" path="res://assets/perfect_cursor.png" id="16_sqtar"]
 [ext_resource type="Texture2D" uid="uid://dq8oqxjwjaqed" path="res://assets/flour_press.PNG" id="17_cuhxg"]
 [ext_resource type="Texture2D" uid="uid://dcwpu4ni40c6q" path="res://assets/flour_normal.PNG" id="17_vrqbj"]
+[ext_resource type="AudioStream" uid="uid://db215rikntf4w" path="res://assets/perfect.mp3" id="19_5vu4g"]
+[ext_resource type="AudioStream" uid="uid://fr1hncim0j74" path="res://assets/good.mp3" id="20_s6y8e"]
 [ext_resource type="Texture2D" uid="uid://clijmsv5yvxv3" path="res://assets/extra_btn_normal.png" id="22_t4x03"]
+[ext_resource type="Texture2D" uid="uid://bmw0bpru1gjn7" path="res://assets/egg.png" id="23_s6y8e"]
 [ext_resource type="Texture2D" uid="uid://cpa0ygtut4xar" path="res://assets/extra_btn_press.png" id="23_t4x03"]
+[ext_resource type="Texture2D" uid="uid://cd8cak3opghpo" path="res://assets/butter.png" id="26_s1tv7"]
+[ext_resource type="Texture2D" uid="uid://dt61ocvesdiie" path="res://assets/suger.png" id="29_37dvx"]
+[ext_resource type="Texture2D" uid="uid://8mlo888sh6b4" path="res://assets/flour.png" id="32_p5dy6"]
+[ext_resource type="Texture2D" uid="uid://be7pnf1jm8kh8" path="res://assets/trash_normal.png" id="36_kf8tg"]
+[ext_resource type="Texture2D" uid="uid://8gjrkp0jb4j7" path="res://assets/btn_normal.png" id="36_slt2r"]
+[ext_resource type="Texture2D" uid="uid://uu7otusrm0ba" path="res://assets/shelve_btn_normal.png" id="36_wexui"]
+[ext_resource type="Texture2D" uid="uid://bdmefc06otybq" path="res://assets/trash_press.png" id="37_32tgx"]
+[ext_resource type="Texture2D" uid="uid://dfyfvxksslhd8" path="res://assets/shelve_btn_press.png" id="37_ww381"]
+[ext_resource type="Texture2D" uid="uid://bqm6smsrvss8n" path="res://assets/btn_press.png" id="37_yjd84"]
+[ext_resource type="AudioStream" uid="uid://bftpgbftxjgc2" path="res://assets/trash.wav" id="38_32tgx"]
+[ext_resource type="Texture2D" uid="uid://g0gct3kcw02f" path="res://assets/IMG_2274-removebg-preview.png" id="44_krsgc"]
+[ext_resource type="Texture2D" uid="uid://bu3ivqtccsskc" path="res://assets/IMG_2275-removebg-preview.png" id="46_2x1bi"]
+[ext_resource type="Texture2D" uid="uid://dduup5oyqwei" path="res://assets/IMG_2276-removebg-preview.png" id="47_pufsh"]
+[ext_resource type="Texture2D" uid="uid://8wqlwsnrfhtu" path="res://assets/IMG_2277-removebg-preview.png" id="48_0dpug"]
+[ext_resource type="Texture2D" uid="uid://sle8rmeol16" path="res://assets/IMG_2278-removebg-preview.png" id="49_m7mob"]
+[ext_resource type="Texture2D" uid="uid://c102mllbbqe8n" path="res://assets/IMG_2279-removebg-preview.png" id="50_hagvn"]
+[ext_resource type="Texture2D" uid="uid://cb4jn5grm71ln" path="res://assets/IMG_2281-removebg-preview.png" id="51_7p6a1"]
+[ext_resource type="Texture2D" uid="uid://0eb7n6rov8gm" path="res://assets/IMG_2282-removebg-preview.png" id="52_66oyn"]
+[ext_resource type="Texture2D" uid="uid://5nc3pk1yeimr" path="res://assets/IMG_2283-removebg-preview.png" id="53_j0jq8"]
+[ext_resource type="Texture2D" uid="uid://djpgh6oaanl60" path="res://assets/IMG_2284-removebg-preview.png" id="54_rvt3g"]
+[ext_resource type="Texture2D" uid="uid://dwbmh6vdupcdd" path="res://assets/IMG_2285-removebg-preview.png" id="55_h184a"]
+[ext_resource type="Texture2D" uid="uid://di8w81dy0v8ug" path="res://assets/pineapple.png" id="58_pnpip"]
+[ext_resource type="Texture2D" uid="uid://d3a0jc316l53l" path="res://assets/grape.png" id="59_234o1"]
+[ext_resource type="Texture2D" uid="uid://dry4kktmknfv1" path="res://assets/strawberry.png" id="60_krsgc"]
+[ext_resource type="Texture2D" uid="uid://x6avgffffoci" path="res://assets/notice_bg.png" id="61_krsgc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25e7j"]
 atlas = ExtResource("12_525vb")
@@ -109,42 +137,95 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhmdk"]
-atlas = ExtResource("13_nt65e")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5y6v"]
-atlas = ExtResource("13_nt65e")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_407ns"]
-atlas = ExtResource("13_nt65e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7tkd"]
+atlas = ExtResource("12_qixtg")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_w3w6i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_81iov"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slt2r"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjd84"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wexui"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww381"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qo25"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rynmh"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fykia"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yuvj"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2nsf"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urfw8"]
+atlas = ExtResource("12_qixtg")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgl3x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bhmdk")
-}],
-"loop": true,
-"name": &"full",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_o7tkd")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s5y6v")
-}],
-"loop": true,
-"name": &"half",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_81iov")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_407ns")
+"texture": SubResource("AtlasTexture_slt2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjd84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wexui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww381")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qo25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rynmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fykia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yuvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2nsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urfw8")
 }],
 "loop": true,
-"name": &"none",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -153,6 +234,7 @@ animations = [{
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_00tan")
 biscuit_tscn = ExtResource("2_ctvyo")
+money_tscn = ExtResource("3_slt2r")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 offset_right = 40.0
@@ -160,37 +242,41 @@ offset_bottom = 40.0
 texture = ExtResource("3_w3w6i")
 
 [node name="Baker" type="AnimatedSprite2D" parent="CanvasLayer"]
-position = Vector2(662, 407)
+position = Vector2(733, 518)
 sprite_frames = SubResource("SpriteFrames_nt65e")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.664325
-centered = false
 
 [node name="BakerBestRateLabel" type="Label" parent="CanvasLayer/Baker"]
 visible = false
-offset_left = 44.0
-offset_top = -6.0
-offset_right = 201.0
-offset_bottom = 36.0
+offset_left = -76.0
+offset_top = -105.0
+offset_right = 81.0
+offset_bottom = -63.0
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "Best: 100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Baker"]
+[node name="BakeSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/Baker"]
+stream = ExtResource("9_o7tkd")
+volume_db = 7.924
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Baker"]
 visible = false
-offset_left = 245.0
-offset_top = 15.0
-offset_right = 305.0
-offset_bottom = 75.0
+offset_left = 130.0
+offset_top = -91.0
+offset_right = 190.0
+offset_bottom = -31.0
 value = 70.0
 fill_mode = 4
 texture_over = ExtResource("9_rqnht")
 texture_progress = ExtResource("10_srvxn")
+
+[node name="ClockSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/Baker"]
+stream = ExtResource("12_81iov")
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 742.0
@@ -308,7 +394,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "40g"
+text = "60g"
 horizontal_alignment = 2
 
 [node name="SugerTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
@@ -321,13 +407,46 @@ texture_under = ExtResource("8_cuhxg")
 texture_progress = ExtResource("13_28f34")
 
 [node name="SugerPerfect" type="TextureRect" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar"]
+visible = false
 layout_mode = 0
-offset_left = 50.0
+offset_left = 108.0
 offset_top = 4.0
-offset_right = 56.0
+offset_right = 114.0
 offset_bottom = 32.0
 pivot_offset = Vector2(3, 0)
 texture = ExtResource("16_sqtar")
+
+[node name="SugerPerfectLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -11.5
+offset_right = 28.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Perfect"
+
+[node name="SugerGoodLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Good"
 
 [node name="SugerMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -367,7 +486,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "60g"
+text = "90g"
 horizontal_alignment = 2
 
 [node name="ButterTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
@@ -380,12 +499,46 @@ texture_under = ExtResource("8_cuhxg")
 texture_progress = ExtResource("12_28f34")
 
 [node name="ButterPerfect" type="TextureRect" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar"]
-offset_left = 50.0
+visible = false
+layout_mode = 0
+offset_left = 7.0
 offset_top = 4.0
-offset_right = 56.0
+offset_right = 13.0
 offset_bottom = 32.0
 pivot_offset = Vector2(3, 0)
 texture = ExtResource("16_sqtar")
+
+[node name="ButterPerfectLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Perfect"
+
+[node name="ButterGoodLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Good"
 
 [node name="ButterMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -424,20 +577,21 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "2"
+text = "100g"
 horizontal_alignment = 2
 
 [node name="EggTextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(80, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-step = 50.0
-value = 40.0
+value = 50.0
 fill_mode = 1
 texture_under = ExtResource("8_cuhxg")
 texture_progress = ExtResource("11_jhs7r")
 
 [node name="EggPerfect" type="TextureRect" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar"]
+visible = false
+layout_mode = 0
 offset_left = 50.0
 offset_top = 4.0
 offset_right = 56.0
@@ -445,12 +599,50 @@ offset_bottom = 32.0
 pivot_offset = Vector2(3, 0)
 texture = ExtResource("16_sqtar")
 
+[node name="EggPerfectLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Perfect"
+
+[node name="EggGoodLabel" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Good"
+
 [node name="EggMin" type="Label" parent="CanvasLayer/FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "0"
+text = "0g"
+
+[node name="PerfectSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/FillingProgress"]
+stream = ExtResource("19_5vu4g")
+
+[node name="GoodSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/FillingProgress"]
+stream = ExtResource("20_s6y8e")
 
 [node name="ChooseButton" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -475,15 +667,14 @@ layout_mode = 2
 texture_normal = ExtResource("11_cuhxg")
 texture_pressed = ExtResource("12_vrqbj")
 
-[node name="Label" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Egg"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ChooseButton/HBoxContainer/Egg"]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 62.0
-offset_right = 70.0
-offset_bottom = 85.0
-rotation = 0.163087
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Egg"
+offset_left = 20.0
+offset_top = 59.0
+offset_right = 820.0
+offset_bottom = 859.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("23_s6y8e")
 
 [node name="Butter" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -491,15 +682,14 @@ layout_mode = 2
 texture_normal = ExtResource("8_25e7j")
 texture_pressed = ExtResource("12_t4x03")
 
-[node name="Label" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Butter"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ChooseButton/HBoxContainer/Butter"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 46.0
-offset_right = 86.0
-offset_bottom = 69.0
-rotation = 0.90733
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Butter"
+offset_left = 17.0
+offset_top = 54.0
+offset_right = 617.0
+offset_bottom = 654.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("26_s1tv7")
 
 [node name="Suger" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -507,15 +697,14 @@ layout_mode = 2
 texture_normal = ExtResource("9_t4x03")
 texture_pressed = ExtResource("15_cuhxg")
 
-[node name="Label" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Suger"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ChooseButton/HBoxContainer/Suger"]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 52.0
-offset_right = 74.0
-offset_bottom = 75.0
-rotation = 0.624569
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Suger"
+offset_left = 27.0
+offset_top = 56.0
+offset_right = 433.0
+offset_bottom = 735.0
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("29_37dvx")
 
 [node name="Flour" type="TextureButton" parent="CanvasLayer/ChooseButton/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -523,109 +712,66 @@ layout_mode = 2
 texture_normal = ExtResource("17_vrqbj")
 texture_pressed = ExtResource("17_cuhxg")
 
-[node name="Label" type="Label" parent="CanvasLayer/ChooseButton/HBoxContainer/Flour"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ChooseButton/HBoxContainer/Flour"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 62.0
-offset_right = 68.0
-offset_bottom = 85.0
-rotation = 0.4147
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Flour"
+offset_left = 18.0
+offset_top = 53.0
+offset_right = 274.0
+offset_bottom = 309.0
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("32_p5dy6")
 
-[node name="ShelveButton" type="Button" parent="CanvasLayer"]
-offset_left = 311.0
-offset_top = 545.0
-offset_right = 381.0
-offset_bottom = 615.0
-text = "Shelve"
+[node name="TrashButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 400.0
+offset_top = 199.0
+offset_right = 600.0
+offset_bottom = 299.0
+texture_normal = ExtResource("36_kf8tg")
+texture_pressed = ExtResource("37_32tgx")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/TrashButton"]
+stream = ExtResource("38_32tgx")
+volume_db = 3.962
+
+[node name="ShelveButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 243.0
+offset_top = 514.0
+offset_right = 339.0
+offset_bottom = 617.0
+texture_normal = ExtResource("36_wexui")
+texture_pressed = ExtResource("37_ww381")
 
 [node name="BestRateLabel" type="Label" parent="CanvasLayer"]
-offset_left = 536.0
-offset_top = 264.0
-offset_right = 745.0
-offset_bottom = 319.0
+offset_left = 259.0
+offset_top = 67.0
+offset_right = 468.0
+offset_bottom = 122.0
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Best: 0%"
 horizontal_alignment = 1
 
-[node name="BakeButton" type="Button" parent="CanvasLayer"]
-offset_left = 995.0
-offset_top = 475.0
-offset_right = 1065.0
-offset_bottom = 545.0
-text = "Bake"
-
-[node name="NoticeLabel" type="Label" parent="CanvasLayer"]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -517.0
-offset_top = 87.0
-offset_right = 490.0
-offset_bottom = 156.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 50
-text = "notice"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="BakeButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 867.0
+offset_top = 535.0
+offset_right = 963.0
+offset_bottom = 638.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("36_slt2r")
+texture_pressed = ExtResource("37_yjd84")
 
 [node name="MoneyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 74.0
-offset_top = 24.0
-offset_right = 172.0
-offset_bottom = 66.0
+offset_left = 88.0
+offset_top = 21.0
+offset_right = 186.0
+offset_bottom = 63.0
 theme_override_font_sizes/font_size = 30
 text = "0"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/MoneyLabel"]
+[node name="MoneyAnim" type="AnimatedSprite2D" parent="CanvasLayer/MoneyLabel"]
 position = Vector2(-26, 23)
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bhmdk")
-
-[node name="StarLabel" type="Label" parent="CanvasLayer"]
-offset_left = 184.0
-offset_right = 282.0
-offset_bottom = 42.0
-theme_override_font_sizes/font_size = 30
-text = "4.5"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("13_bhmdk")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
-position = Vector2(-15, 51)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_w3w6i")
-animation = &"half"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
-position = Vector2(18, 51)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_w3w6i")
-animation = &"half"
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
-position = Vector2(50, 51)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_w3w6i")
-animation = &"half"
-
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
-position = Vector2(82, 51)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_w3w6i")
-animation = &"half"
-
-[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/StarLabel"]
-position = Vector2(115, 51)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_w3w6i")
-animation = &"half"
 
 [node name="Road" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -716,343 +862,338 @@ offset_bottom = 40.0
 
 [node name="One1" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("44_krsgc")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One1"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One1"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One1/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One1"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+frame_progress = 0.0762132
 
 [node name="One2" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("46_2x1bi")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One2"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One2"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One2/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One2"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One3" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("47_pufsh")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One3"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One3"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One3/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One3"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One4" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("48_0dpug")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One4"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One4"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One4/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One4"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One5" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("49_m7mob")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One5"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One5"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One5/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One5"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One6" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("50_hagvn")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One6"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One6"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One6/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One6"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One7" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("51_7p6a1")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One7"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One7"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One7/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One7"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One8" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("51_7p6a1")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One8"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One8"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One8/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One8"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One9" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("52_66oyn")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One9"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One9"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
-
-[node name="Label" type="Label" parent="CanvasLayer/People/One9/Label2"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One9"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="One10" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 82.0
-texture = ExtResource("4_w3w6i")
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("53_j0jq8")
 script = ExtResource("3_407ns")
 
 [node name="Label" type="Label" parent="CanvasLayer/People/One10"]
 layout_mode = 0
-offset_left = -16.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 6.0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 30
 text = "+100"
 
-[node name="Label2" type="Label" parent="CanvasLayer/People/One10"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = -38.0
-offset_right = 141.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 30
-text = "3.5"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One10"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
-[node name="Label" type="Label" parent="CanvasLayer/People/One10/Label2"]
+[node name="One11" type="TextureRect" parent="CanvasLayer/People"]
 layout_mode = 0
-offset_left = -34.0
-offset_top = -18.0
-offset_right = 9.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 50
-text = "⭐"
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("54_rvt3g")
+script = ExtResource("3_407ns")
+
+[node name="Label" type="Label" parent="CanvasLayer/People/One11"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/font_size = 30
+text = "+100"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One11"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
+
+[node name="One12" type="TextureRect" parent="CanvasLayer/People"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 302.0
+offset_right = 138.0
+offset_bottom = 384.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(100, 100)
+texture = ExtResource("55_h184a")
+script = ExtResource("3_407ns")
+
+[node name="Label" type="Label" parent="CanvasLayer/People/One12"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 87.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/font_size = 30
+text = "+100"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/People/One12"]
+position = Vector2(6, -18)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_mgl3x")
+autoplay = "default"
+frame_progress = 0.636278
 
 [node name="ExtraButton" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -1080,17 +1221,44 @@ layout_mode = 2
 texture_normal = ExtResource("22_t4x03")
 texture_pressed = ExtResource("23_t4x03")
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ExtraButton/HBoxContainer/Pineapple"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 89.0
+offset_right = 205.0
+offset_bottom = 289.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("58_pnpip")
+
 [node name="Blueberry" type="TextureButton" parent="CanvasLayer/ExtraButton/HBoxContainer"]
 custom_minimum_size = Vector2(55, 55)
 layout_mode = 2
 texture_normal = ExtResource("22_t4x03")
 texture_pressed = ExtResource("23_t4x03")
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ExtraButton/HBoxContainer/Blueberry"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 92.0
+offset_right = 209.0
+offset_bottom = 292.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("59_234o1")
+
 [node name="Strawberry" type="TextureButton" parent="CanvasLayer/ExtraButton/HBoxContainer"]
 custom_minimum_size = Vector2(55, 55)
 layout_mode = 2
 texture_normal = ExtResource("22_t4x03")
 texture_pressed = ExtResource("23_t4x03")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ExtraButton/HBoxContainer/Strawberry"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 91.0
+offset_right = 208.0
+offset_bottom = 291.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("60_krsgc")
 
 [node name="Shelves" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -1160,6 +1328,26 @@ offset_top = -22.0
 offset_right = 594.0
 offset_bottom = 18.0
 
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 327.0
+offset_top = 148.0
+offset_right = 893.0
+offset_bottom = 246.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("61_krsgc")
+
+[node name="NoticeLabel" type="Label" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Need"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="CanvasLayer" method="_on_egg_button_down"]
 [connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Egg" to="CanvasLayer" method="_on_egg_button_up"]
 [connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Butter" to="CanvasLayer" method="_on_butter_button_down"]
@@ -1168,6 +1356,7 @@ offset_bottom = 18.0
 [connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Suger" to="CanvasLayer" method="_on_suger_button_up"]
 [connection signal="button_down" from="CanvasLayer/ChooseButton/HBoxContainer/Flour" to="CanvasLayer" method="_on_flour_button_down"]
 [connection signal="button_up" from="CanvasLayer/ChooseButton/HBoxContainer/Flour" to="CanvasLayer" method="_on_flour_button_up"]
+[connection signal="button_down" from="CanvasLayer/TrashButton" to="CanvasLayer" method="_on_trash_button_button_down"]
 [connection signal="pressed" from="CanvasLayer/ShelveButton" to="CanvasLayer" method="_on_shelve_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BakeButton" to="CanvasLayer" method="_on_bake_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExtraButton/HBoxContainer/Pineapple" to="CanvasLayer" method="_on_pineapple_pressed"]

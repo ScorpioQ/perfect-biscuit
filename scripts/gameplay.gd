@@ -28,17 +28,25 @@ extends CanvasLayer
 @onready var suger_min: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerMin
 @onready var suger_perfect: TextureRect = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar/SugerPerfect
 
+@onready var suger_perfect_label: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar/SugerPerfectLabel
+@onready var butter_perfect_label: Label = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar/ButterPerfectLabel
+@onready var egg_perfect_label: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar/EggPerfectLabel
+@onready var suger_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar/SugerGoodLabel
+@onready var butter_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar/ButterGoodLabel
+@onready var egg_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar/EggGoodLabel
+@onready var perfect_sfx: AudioStreamPlayer2D = $FillingProgress/PerfectSFX
+@onready var good_sfx: AudioStreamPlayer2D = $FillingProgress/GoodSFX
+
+
 @onready var flour_target_label: RichTextLabel = $FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer/FlourTargetLabel
 @onready var flour_texture_progress_bar: TextureProgressBar = $FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2/FlourTextureProgressBar
 
-@onready var notice_label: Label = $NoticeLabel
+@onready var notice_panel_container: PanelContainer = $PanelContainer
+@onready var notice_label: Label = $PanelContainer/NoticeLabel
 
 @onready var best_rate_label: Label = $BestRateLabel
 @onready var baker: AnimatedSprite2D = $Baker
 @onready var baker_best_rate_label: Label = $Baker/BakerBestRateLabel
-
-@onready var bake_button: Button = $BakeButton
-@onready var shelve_button: Button = $ShelveButton
 
 @onready var shelves_maker: Control = $Shelves/ShelvesMaker
 @onready var shelves_maker_2: Control = $Shelves/ShelvesMaker2
@@ -50,13 +58,17 @@ extends CanvasLayer
 @onready var extra_shelves_maker_3: Control = $ExtraShelves/ExtraShelvesMaker3
 
 @onready var money_label: Label = $MoneyLabel
-@onready var star_label: Label = $StarLabel
+@onready var trash_button: TextureButton = $TrashButton
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $TrashButton/AudioStreamPlayer2D
 
 @onready var biscuit_number_label: Label = $HBoxContainer5/BiscuitNumberLabel
 @onready var people: Control = $People
 @onready var baker_progress_bar: TextureProgressBar = $Baker/TextureProgressBar
+@onready var bake_sfx: AudioStreamPlayer2D = $Baker/BakeSFX
+@onready var clock_sfx: AudioStreamPlayer2D = $Baker/ClockSFX
 
 @export var biscuit_tscn: PackedScene
+@export var money_tscn: PackedScene
 
 enum FillingState {
 	None,
@@ -77,6 +89,11 @@ enum BakerState {
 	Working,
 	Trans,
 }
+
+var flour: int = 0
+var suger: int = 0
+var butter: int = 0
+var egg: int = 0
 
 var filling_state: FillingState = FillingState.None
 var cook_state: CookState = CookState.None
@@ -105,19 +122,18 @@ const flour_target_text = "%s g"
 const suger_target_text = "%s g"
 
 const x1_egg_min: int = 0
-const x1_egg_best: int = 1
-const x1_egg_max: int = 2
+const x1_egg_best: int = 8
+const x1_egg_max: int = 100
 
 const x1_butter_min: int = 0
-const x1_butter_best: int = 50
-const x1_butter_max: int = 60
+const x1_butter_best: int = 5
+const x1_butter_max: int = 90
 
 const x1_suger_min: int = 0
-const x1_suger_best: int = 30
-const x1_suger_max: int = 40
+const x1_suger_best: int = 3
+const x1_suger_max: int = 60
 
 const x1_flour_min: int = 0
-const x1_flour_best: int = 100
 const x1_flour_max: int = 120
 
 var egg_cur: int
@@ -131,8 +147,10 @@ var start_filling_progress: float
 var cook_number: int = 0
 
 var money: int = 0
-var score: float
-var score_num: int
+
+var perfect_suger: int
+var perfect_butter: int
+var perfect_egg: int
 
 enum Filling {
 	None,
@@ -150,7 +168,6 @@ var baker_wait_num: int
 
 func _ready() -> void:
 	reset_progress_min_max()
-	star_label.set_point(0)
 	for i in shelves_len:
 		shelves.append(null)
 	for i in extra_shelves_len:
@@ -176,7 +193,8 @@ func _process(delta: float) -> void:
 				baker_state = BakerState.Trans
 				baker.play("full")
 				baker_wait_num = baker_number
-				
+				bake_sfx.stop()
+				clock_sfx.stop()
 				
 		BakerState.Trans:
 			baker_progress_bar.hide()
@@ -218,8 +236,8 @@ func find_first_extra_shelves_empty() -> int:
 
 func reset_progress_min_max():
 	egg_target_label.text = egg_target_text % egg_cur
-	egg_min.text = str(x1_egg_min)
-	egg_max.text = str(x1_egg_max)
+	egg_min.text = str(x1_egg_min) + "g"
+	egg_max.text = str(x1_egg_max) + "g"
 
 	butter_target_label.text = butter_target_text % butter_cur
 	butter_min.text = str(x1_butter_min) + "g"
@@ -262,38 +280,102 @@ func stop_filling():
 	
 	var total: int
 	match cur_filling:
-		Filling.Egg:
-			total = int(egg_texture_progress_bar.value / 100.0 * x1_egg_max)
-			egg_cur = int(total)
-			egg_target_label.text = egg_target_text % egg_cur
-		Filling.Butter:
-			total = int(butter_texture_progress_bar.value / 100.0 * x1_butter_max)
-			butter_cur = int(total)
-			butter_target_label.text = butter_target_text % butter_cur
 		Filling.Flour:
 			total = int(flour_texture_progress_bar.value / 100.0 * x1_flour_max)
 			flour_cur = int(total)
 			
 			cook_number = flour_cur / 10
+
 			biscuit_number_label.text = "x" + str(cook_number)
-			
 			flour_target_label.text = flour_target_text % flour_cur
+			set_perfect_pos_x(cook_number)
+
+		Filling.Egg:
+			total = int(egg_texture_progress_bar.value / 100.0 * x1_egg_max)
+			egg_cur = int(total)
+			if perfect_egg > 0 and abs(egg_cur - perfect_egg) <= 2:
+				egg_perfect_label.show()
+				egg_perfect_label.scale = Vector2.ONE * 0.5
+				var tween = get_tree().create_tween()
+				tween.tween_property(egg_perfect_label, "scale", Vector2.ONE * 2, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				tween.tween_callback(egg_perfect_label.hide)
+				perfect_sfx.play()
+
+			elif perfect_egg > 0 and abs(egg_cur - perfect_egg) <= 5:
+				egg_good_label.show()
+				egg_good_label.scale = Vector2.ONE * 0.5
+				var tween = get_tree().create_tween()
+				tween.tween_property(egg_good_label, "scale", Vector2.ONE * 2, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				tween.tween_callback(egg_good_label.hide)
+				good_sfx.play()
+
+
+		Filling.Butter:
+			total = int(butter_texture_progress_bar.value / 100.0 * x1_butter_max)
+			butter_cur = int(total)
+			
+			if perfect_butter > 0 and abs(butter_cur - perfect_butter) <= 2:
+				butter_perfect_label.show()
+				butter_perfect_label.scale = Vector2.ONE * 0.5
+				var tween = get_tree().create_tween()
+				tween.tween_property(butter_perfect_label, "scale", Vector2.ONE * 2, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				tween.tween_callback(butter_perfect_label.hide)
+				perfect_sfx.play()
+
+			elif perfect_butter > 0 and abs(butter_cur - perfect_butter) <= 5:
+				butter_good_label.show()
+				butter_good_label.scale = Vector2.ONE * 0.5
+				var tween = get_tree().create_tween()
+				tween.tween_property(butter_good_label, "scale", Vector2.ONE * 2, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				tween.tween_callback(butter_good_label.hide)
+				good_sfx.play()
+
 		Filling.Suger:
 			total = int(suger_texture_progress_bar.value / 100.0 * x1_suger_max)
 			suger_cur = int(total)
-			suger_target_label.text = suger_target_text % suger_cur
+			
+			if perfect_suger > 0 and abs(suger_cur - perfect_suger) <= 2:
+				suger_perfect_label.show()
+				suger_perfect_label.scale = Vector2.ONE * 0.5
+				var tween = get_tree().create_tween()
+				tween.tween_property(suger_perfect_label, "scale", Vector2.ONE * 2, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				tween.tween_callback(suger_perfect_label.hide)
+				perfect_sfx.play()
 
-	best_rate = 1.00
+			elif perfect_suger > 0 and abs(suger_cur - perfect_suger) <= 5:
+				suger_good_label.show()
+				suger_good_label.scale = Vector2.ONE * 0.5
+				var tween = get_tree().create_tween()
+				tween.tween_property(suger_good_label, "scale", Vector2.ONE * 2, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				tween.tween_callback(suger_good_label.hide)
+				good_sfx.play()
+
+
+	best_rate = 0.7
 	if egg_cur > 0:
-		best_rate -= abs(egg_cur - x1_egg_best * cook_number) * 0.05 / cook_number
+		best_rate += 0.1
+		best_rate -= abs(egg_cur - x1_egg_best * cook_number) * 0.01
 	if butter_cur > 0:
-		best_rate -= abs(butter_cur - x1_butter_best * cook_number) * 0.01 / cook_number
+		best_rate += 0.1
+		best_rate -= abs(butter_cur - x1_butter_best * cook_number) * 0.01
 	if suger_cur > 0:
-		best_rate -= abs(suger_cur - x1_suger_best * cook_number) * 0.01 / cook_number
-	if flour_cur > 0:
-		best_rate -= abs(flour_cur - x1_flour_best * cook_number) * 0.005 / cook_number
+		best_rate += 0.1
+		best_rate -= abs(suger_cur - x1_suger_best * cook_number) * 0.01
 	best_rate = clamp(best_rate, 0, 1)
 	best_rate_label.text = "Best: " + str(int(best_rate * 100)) + "%"
+
+func set_perfect_pos_x(number: int):
+	perfect_suger = number * 3
+	perfect_butter = number * 5
+	perfect_egg = number * 8
+
+	suger_perfect.position.x = 108 - float(perfect_suger) / x1_suger_max * 108
+	butter_perfect.position.x = 108 - float(perfect_butter) / x1_butter_max * 108
+	egg_perfect.position.x = 108 - float(perfect_egg) / x1_egg_max * 108
+
+	suger_perfect.show()
+	butter_perfect.show()
+	egg_perfect.show()
 
 func _on_egg_button_down() -> void:
 	cur_filling = Filling.Egg
@@ -325,10 +407,10 @@ func _on_suger_button_up() -> void:
 
 func _on_bake_button_pressed() -> void:
 	if baker_state != BakerState.None:
-		show_notice("Please wait. Baker is working")
+		show_notice("Baker is working")
 		return
 	if egg_cur == 0 and butter_cur == 0 and flour_cur == 0 and suger_cur == 0:
-		show_notice("nothing to bake")
+		show_notice("Nothing to bake")
 		return
 	
 	baker_number = cook_number
@@ -337,6 +419,8 @@ func _on_bake_button_pressed() -> void:
 	baker_best_rate_label.show()
 	baker_start_working_time = int(Time.get_unix_time_from_system())
 	baker_state = BakerState.Working
+	bake_sfx.play()
+	clock_sfx.play()
 	baker.play("baking")
 	baker_progress_bar.show()
 	baker_progress_bar.value = 0
@@ -344,21 +428,28 @@ func _on_bake_button_pressed() -> void:
 	butter_cur = 0
 	flour_cur = 0
 	suger_cur = 0
-	best_rate = 1
+	best_rate = 0
+	best_rate_label.text = "Best: " + str(int(best_rate * 100)) + "%"
 	cook_number = 0
 	flour_texture_progress_bar.value = 0
 	butter_texture_progress_bar.value = 0
 	egg_texture_progress_bar.value = 0
 	suger_texture_progress_bar.value = 0
 	biscuit_number_label.text = "x0"
+	perfect_suger = 0
+	perfect_butter = 0
+	perfect_egg = 0
+	suger_perfect.hide()
+	butter_perfect.hide()
+	egg_perfect.hide()
 
 func show_notice(msg: String):
 	notice_label.text = msg
-	notice_label.show()
-	notice_label.position = Vector2(59, 87)
+	notice_panel_container.show()
+	notice_panel_container.position = Vector2(327, 148)
 	var tween = get_tree().create_tween()
-	tween.tween_property(notice_label, "position", notice_label.position + Vector2.UP * 50, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(notice_label.hide)
+	tween.tween_property(notice_panel_container, "position", notice_panel_container.position + Vector2.UP * 50, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(notice_panel_container.hide)
 
 func create_biscuit() -> Control:
 	var biscuit = biscuit_tscn.instantiate()
@@ -366,20 +457,22 @@ func create_biscuit() -> Control:
 	self.add_child(biscuit)
 	return biscuit
 
+func create_money():
+	var money_sfx = money_tscn.instantiate()
+	self.add_child(money_sfx)
+	var tween = get_tree().create_tween()
+	tween.tween_property(money_sfx, "scale", Vector2.ONE * 2, 1)
+	tween.tween_callback(money_sfx.queue_free)
+
 func add_money(add: int):
 	money += add
 	money_label.text = str(money)
-
-func add_score(s: int):
-	score = (score * score_num + s) / (score_num + 1)
-	score_num += 1
-	star_label.set_point(score)
-
+	create_money()
 
 func _on_pineapple_pressed() -> void:
 	var target_idx = find_first_normal_biscuit_on_extra_shelves()
 	if target_idx == -1:
-		show_notice("need normal biscuit")
+		show_notice("Need normal biscuit")
 		return
 		
 	var b = extra_shelves[target_idx] as Biscuit
@@ -389,7 +482,7 @@ func _on_pineapple_pressed() -> void:
 func _on_blueberry_pressed() -> void:
 	var target_idx = find_first_normal_biscuit_on_extra_shelves()
 	if target_idx == -1:
-		show_notice("need normal biscuit")
+		show_notice("Need normal biscuit")
 		return
 				
 	var b = extra_shelves[target_idx] as Biscuit
@@ -399,7 +492,7 @@ func _on_blueberry_pressed() -> void:
 func _on_strawberry_pressed() -> void:
 	var target_idx = find_first_normal_biscuit_on_extra_shelves()
 	if target_idx == -1:
-		show_notice("need normal biscuit")
+		show_notice("Need normal biscuit")
 		return
 		
 	var b = extra_shelves[target_idx] as Biscuit
@@ -427,3 +520,24 @@ func _on_shelve_button_pressed() -> void:
 				b.move_to_shelves()
 				shelves[empty_idx] = b
 				extra_shelves[idx] = null
+
+func _on_trash_button_button_down() -> void:
+	egg_cur = 0
+	butter_cur = 0
+	flour_cur = 0
+	suger_cur = 0
+	best_rate = 0
+	best_rate_label.text = "Best: " + str(int(best_rate * 100)) + "%"
+	cook_number = 0
+	flour_texture_progress_bar.value = 0
+	butter_texture_progress_bar.value = 0
+	egg_texture_progress_bar.value = 0
+	suger_texture_progress_bar.value = 0
+	biscuit_number_label.text = "x0"
+	perfect_suger = 0
+	perfect_butter = 0
+	perfect_egg = 0
+	suger_perfect.hide()
+	butter_perfect.hide()
+	egg_perfect.hide()
+	audio_stream_player_2d.play()
