@@ -27,7 +27,7 @@ enum PeopleState {
 	Buying,
 }
 
-var speed = 4
+var speed: float
 var state: PeopleState = PeopleState.Idle
 
 var wait_start: float
@@ -36,7 +36,7 @@ var start_end_step: float
 
 func _ready() -> void:
 	randomize()
-	speed = randf_range(3, 5)
+	speed = randf_range(40, 60)
 	global_position = start.global_position
 	start_pos = global_position
 	wait_start = randi_range(0, 30)
@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 	if wait_start > 0:
 		return
 	start_end_step += delta
-	self.global_position = start_pos.lerp(target_pos, start_end_step / speed)
+	self.global_position = (target_pos - start_pos).normalized() * speed * start_end_step + start_pos
 	if target_idx >= 0 and self.global_position.distance_to(target_pos) < 5:
 		if target_idx == 2 and !rand_buy and !gameplay.is_shelves_empty():
 			rand_buy = true
@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 		start_end_step = 0
 		set_target_pos(road_path[target_idx].global_position)
 		
-	if target_idx != -1 and rand_buy and randf() < 0.5:
+	if target_idx != -1 and rand_buy and randf() < 0.7:
 		target_idx = -1
 		start_end_step = 0
 		set_target_pos(buy.global_position)
@@ -97,11 +97,18 @@ func buy_biscuit():
 	var biscuit = gameplay.shelves[pick_idx]
 	
 	var money: int
-	if biscuit.taste == Biscuit.Taste.Normal:
-		money = clamp(int(100 * biscuit.quality), 1, 300)
-	else:
-		money = clamp(int(200 * biscuit.quality), 1, 300)
-		
+	match biscuit.taste:
+		Biscuit.Taste.White:
+			money = clamp(int(80 * biscuit.quality), 1, 300)
+		Biscuit.Taste.Normal:
+			money = clamp(int(100 * biscuit.quality), 1, 300)
+		Biscuit.Taste.Strawberry:
+			money = clamp(int(150 * biscuit.quality), 1, 300)
+		Biscuit.Taste.Grape:
+			money = clamp(int(200 * biscuit.quality), 1, 300)
+		Biscuit.Taste.Pineapple:
+			money = clamp(int(300 * biscuit.quality), 1, 300)
+
 	gameplay.add_money(money)
 	gameplay.shelves[pick_idx] = null
 	show_money(money)

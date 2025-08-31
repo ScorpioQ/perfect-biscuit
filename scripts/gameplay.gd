@@ -36,6 +36,7 @@ extends CanvasLayer
 @onready var egg_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar/EggGoodLabel
 @onready var perfect_sfx: AudioStreamPlayer2D = $FillingProgress/PerfectSFX
 @onready var good_sfx: AudioStreamPlayer2D = $FillingProgress/GoodSFX
+@onready var btn_sfx: AudioStreamPlayer2D = $FillingProgress/BtnSFX
 
 
 @onready var flour_target_label: RichTextLabel = $FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer/FlourTargetLabel
@@ -82,6 +83,44 @@ extends CanvasLayer
 @onready var shop: Control = $Shop
 @onready var biscuit_layer: Control = $Biscuit
 
+@onready var pineapple_btn: TextureButton = $ExtraButton/HBoxContainer/Pineapple
+@onready var grape_btn: TextureButton = $ExtraButton/HBoxContainer/Grape
+@onready var strawberry_btn: TextureButton = $ExtraButton/HBoxContainer/Strawberry
+@onready var pineapple_times: Label = $ExtraButton/HBoxContainer/Pineapple/PineappleTimes
+@onready var grape_times: Label = $ExtraButton/HBoxContainer/Grape/GrapeTimes
+@onready var strawberry_times: Label = $ExtraButton/HBoxContainer/Strawberry/StrawberryTimes
+
+@onready var shop_butter_btn: TextureButton = $Shop/ShopButter
+@onready var shop_suger_btn: TextureButton = $Shop/ShopSuger
+@onready var shop_egg_btn: TextureButton = $Shop/ShopEgg
+@onready var shop_strawberry: TextureButton = $Shop/ShopStrawberry
+@onready var shop_grape: TextureButton = $Shop/ShopGrape
+@onready var shop_pineapple: TextureButton = $Shop/ShopPineapple
+
+@onready var up_button: TextureButton = $UpButton
+@onready var up_sfx: AudioStreamPlayer2D = $UpButton/UpSFX
+@onready var up: Control = $Up
+@onready var up_btn_sfx: AudioStreamPlayer2D = $Up/UpBtnSFX
+@onready var up_butter: TextureButton = $Up/HBoxContainer/UpButter
+@onready var up_suger: TextureButton = $Up/HBoxContainer/UpSuger
+@onready var up_egg: TextureButton = $Up/HBoxContainer/UpEgg
+@onready var suger_progress: HBoxContainer = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer
+@onready var butter_progress: HBoxContainer = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer
+@onready var egg_progress: HBoxContainer = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2
+@onready var up_strawberry: TextureButton = $Up/HBoxContainer2/UpStrawberry
+@onready var up_grape: TextureButton = $Up/HBoxContainer2/UpGrape
+@onready var up_pineapple: TextureButton = $Up/HBoxContainer2/UpPineapple
+@onready var game_over: Control = $GameOver
+@onready var help_sfx: AudioStreamPlayer2D = $HelpButton/HelpSFX
+@onready var help: Control = $Help
+
+var suger_unlock: bool = false
+var butter_unlock: bool = false
+var egg_unlock: bool = false
+var strawberry_unlock: bool = false
+var grape_unlock: bool = false
+var pineapple_unlock: bool = false
+
 enum FillingState {
 	None,
 	ReadyFill,
@@ -103,15 +142,19 @@ enum BakerState {
 }
 
 var flour_ori: int = 240
-var suger_ori: int = 120
-var butter_ori: int = 180
-var egg_ori: int = 200
+var suger_ori: int = 0
+var butter_ori: int = 0
+var egg_ori: int = 0
+var strawberry_ori: int = 0
+var grape_ori: int = 0
+var pineapple_ori: int = 0
 
 var filling_state: FillingState = FillingState.None
 var baker_state: BakerState = BakerState.None
 const baker_working_time = 1
 var baker_start_working_time = 0
 var baker_number: int = 0
+var bake_white: bool = true
 
 var extra_shelves: Array = []
 var shelves: Array = []
@@ -191,6 +234,10 @@ func _ready() -> void:
 	update_ori()
 
 func _process(delta: float) -> void:
+	if money < 10 and flour_ori < 10 and is_shelve_emtpy() and is_extra_shelves_empty() and baker_state == BakerState.None:
+		game_over.show()
+		return
+
 	match filling_state:
 		FillingState.Filling:
 			filling(delta)
@@ -216,7 +263,10 @@ func _process(delta: float) -> void:
 					var b = create_biscuit() as Biscuit
 					b.extra_shelve_idx = empty_idx
 					b.set_quality(randf_range(baking_best_rate - 0.05, baking_best_rate + 0.05))
-					b.taste = Biscuit.Taste.Normal
+					if bake_white:
+						b.set_taste(Biscuit.Taste.White)
+					else:
+						b.set_taste(Biscuit.Taste.Normal)
 					b.extra_shelve_marker_pos = extra_shelves_maker.global_position
 					b.extra_shelve_marker_pos2 = extra_shelves_maker_2.global_position
 					b.extra_shelve_marker_pos3 = extra_shelves_maker_3.global_position
@@ -258,6 +308,20 @@ func find_first_extra_shelves_empty() -> int:
 	
 	return -1
 
+func is_extra_shelves_empty() -> bool:
+	for i in extra_shelves_len:
+		if extra_shelves[i] != null:
+			return false
+	
+	return true
+
+func is_shelve_emtpy() -> bool:
+	for i in shelves_len:
+		if shelves[i] != null:
+			return false
+	
+	return true
+	
 func reset_progress_min_max():
 	egg_target_label.text = egg_target_text % egg_cur
 	egg_min.text = str(x1_egg_min) + "g"
@@ -277,42 +341,54 @@ func set_filling_state(s: FillingState):
 	filling_state = s
 
 func start_filling():
+	btn_sfx.play()
 	match cur_filling:
 		Filling.Flour:
+			if flour_ori <= 0:
+				show_notice("not enouph")
+				return
 			start_filling_progress = flour_texture_progress_bar.value
 		Filling.Egg:
+			if egg_ori <= 0:
+				show_notice("not enouph")
+				return
 			start_filling_progress = egg_texture_progress_bar.value
 		Filling.Butter:
+			if butter_ori <= 0:
+				show_notice("not enouph")
+				return
 			start_filling_progress = butter_texture_progress_bar.value
 		Filling.Suger:
+			if suger_ori <= 0:
+				show_notice("not enouph")
+				return
 			start_filling_progress = suger_texture_progress_bar.value
 	set_filling_state(FillingState.Filling)
 
 func filling(delta: float) -> void:
-	var total: int
 	match cur_filling:
 		Filling.Flour:
-			total = int(flour_texture_progress_bar.value / 100.0 * x1_flour_max)
-			if flour_texture_progress_bar.value + delta * flour_filling_speed >= flour_ori:
-				flour_texture_progress_bar.value = flour_ori / float(x1_flour_max) * 100.0
+			if flour_texture_progress_bar.value + delta * flour_filling_speed >= float(flour_ori) / float(x1_flour_max) * 100.0:
+				flour_texture_progress_bar.value = float(flour_ori) / float(x1_flour_max) * 100.0
+				show_notice("not enouph")
 			else:
 				flour_texture_progress_bar.value += delta * flour_filling_speed
 		Filling.Egg:
-			total = int(egg_texture_progress_bar.value / 100.0 * x1_egg_max)
-			if egg_texture_progress_bar.value + delta * egg_filling_speed >= egg_ori:
-				egg_texture_progress_bar.value = egg_ori / float(x1_egg_max) * 100.0
+			if egg_texture_progress_bar.value + delta * egg_filling_speed >= float(egg_ori) / float(x1_egg_max) * 100.0:
+				egg_texture_progress_bar.value = float(egg_ori) / float(x1_egg_max) * 100.0
+				show_notice("not enouph")
 			else:
 				egg_texture_progress_bar.value += delta * egg_filling_speed
 		Filling.Butter:
-			total = int(butter_texture_progress_bar.value / 100.0 * x1_butter_max)
-			if butter_texture_progress_bar.value + delta * butter_filling_speed >= butter_ori:
-				butter_texture_progress_bar.value = butter_ori / float(x1_butter_max) * 100.0
+			if butter_texture_progress_bar.value + delta * butter_filling_speed >= float(butter_ori) / float(x1_butter_max) * 100.0:
+				butter_texture_progress_bar.value = float(butter_ori) / float(x1_butter_max) * 100.0
+				show_notice("not enouph")
 			else:
 				butter_texture_progress_bar.value += delta * butter_filling_speed
 		Filling.Suger:
-			total = int(suger_texture_progress_bar.value / 100.0 * x1_suger_max)
-			if suger_texture_progress_bar.value + delta * suger_filling_speed >= suger_ori:
-				suger_texture_progress_bar.value = suger_ori / float(x1_suger_max) * 100.0
+			if suger_texture_progress_bar.value + delta * suger_filling_speed >= float(suger_ori) / float(x1_suger_max) * 100.0:
+				suger_texture_progress_bar.value = float(suger_ori) / float(x1_suger_max) * 100.0
+				show_notice("not enouph")
 			else:
 				suger_texture_progress_bar.value += delta * suger_filling_speed
 
@@ -389,18 +465,18 @@ func stop_filling():
 				good_sfx.play()
 
 	update_ori()
-	best_rate = 0.7
+	best_rate = 0.5
 	if egg_cur > 0:
-		best_rate += 0.1
-		best_rate -= abs(egg_cur - x1_egg_best * cook_number) * 0.01
+		best_rate += 0.2
+		best_rate -= clampf(abs(egg_cur - x1_egg_best * cook_number) * 0.01, 0, 0.2)
 	if butter_cur > 0:
-		best_rate += 0.1
-		best_rate -= abs(butter_cur - x1_butter_best * cook_number) * 0.01
+		best_rate += 0.2
+		best_rate -= clampf(abs(butter_cur - x1_butter_best * cook_number) * 0.01, 0, 0.2)
 	if suger_cur > 0:
 		best_rate += 0.1
-		best_rate -= abs(suger_cur - x1_suger_best * cook_number) * 0.01
+		best_rate -= clampf(abs(suger_cur - x1_suger_best * cook_number) * 0.01, 0, 0.2)
 	best_rate = clamp(best_rate, 0, 1)
-	best_rate_label.text = "Best: " + str(int(best_rate * 100)) + "%"
+	best_rate_label.text = "Tasty: " + str(int(best_rate * 100)) + "%"
 
 func set_perfect_pos_x(number: int):
 	perfect_suger = number * 3
@@ -452,6 +528,9 @@ func _on_bake_button_pressed() -> void:
 		show_notice("flour not enouph")
 		return
 	
+	if egg_ori > 0 or butter_ori > 0 or suger_ori > 0:
+		bake_white = false
+
 	flour_ori -= flour_cur
 	egg_ori -= egg_cur
 	butter_ori -= butter_cur
@@ -459,7 +538,7 @@ func _on_bake_button_pressed() -> void:
 
 	baker_number = cook_number
 	baking_best_rate = best_rate
-	baker_best_rate_label.text = "Best: " + str(int(baking_best_rate * 100)) + "%"
+	baker_best_rate_label.text = "Tasty: " + str(int(baking_best_rate * 100)) + "%"
 	baker_best_rate_label.show()
 	baker_start_working_time = int(Time.get_unix_time_from_system())
 	baker_state = BakerState.Working
@@ -473,7 +552,7 @@ func _on_bake_button_pressed() -> void:
 	flour_cur = 0
 	suger_cur = 0
 	best_rate = 0
-	best_rate_label.text = "Best: " + str(int(best_rate * 100)) + "%"
+	best_rate_label.text = "Tasty: " + str(int(best_rate * 100)) + "%"
 	cook_number = 0
 	flour_texture_progress_bar.value = 0
 	butter_texture_progress_bar.value = 0
@@ -518,34 +597,53 @@ func cost_money(cost: int):
 	money_label.text = str(money)
 
 func _on_pineapple_pressed() -> void:
+	if pineapple_ori <= 0:
+		show_notice("buy more")
+		return
+
 	extra_btn_sfx.play()
 	var target_idx = find_first_normal_biscuit_on_extra_shelves()
 	if target_idx == -1:
 		show_notice("Need normal biscuit")
 		return
-		
+
+	pineapple_ori -= 1
+	pineapple_times.text = str(pineapple_ori)
 	var b = extra_shelves[target_idx] as Biscuit
 	if b:
 		b.set_taste(Biscuit.Taste.Pineapple)
 
-func _on_blueberry_pressed() -> void:
+func _on_grape_pressed() -> void:
+	if grape_ori <= 0:
+		show_notice("buy more")
+		return
+
 	extra_btn_sfx.play()
 	var target_idx = find_first_normal_biscuit_on_extra_shelves()
 	if target_idx == -1:
 		show_notice("Need normal biscuit")
 		return
-				
+
+	grape_ori -= 1
+	grape_times.text = str(grape_ori)
+
 	var b = extra_shelves[target_idx] as Biscuit
 	if b:
-		b.set_taste(Biscuit.Taste.Blueberry)
+		b.set_taste(Biscuit.Taste.Grape)
 
 func _on_strawberry_pressed() -> void:
+	if strawberry_ori <= 0:
+		show_notice("buy more")
+		return
+	
 	extra_btn_sfx.play()
 	var target_idx = find_first_normal_biscuit_on_extra_shelves()
 	if target_idx == -1:
 		show_notice("Need normal biscuit")
 		return
-		
+	
+	strawberry_ori -= 1
+	strawberry_times.text = str(strawberry_ori)
 	var b = extra_shelves[target_idx] as Biscuit
 	if b:
 		b.set_taste(Biscuit.Taste.Strawberry)
@@ -553,7 +651,7 @@ func _on_strawberry_pressed() -> void:
 func find_first_normal_biscuit_on_extra_shelves() -> int:
 	for idx in extra_shelves.size():
 		var b = extra_shelves[idx]
-		if b and b.taste == Biscuit.Taste.Normal:
+		if b and (b.taste == Biscuit.Taste.Normal or b.taste == Biscuit.Taste.White):
 			return idx
 	return -1
 
@@ -583,7 +681,7 @@ func _on_trash_button_button_down() -> void:
 	flour_cur = 0
 	suger_cur = 0
 	best_rate = 0
-	best_rate_label.text = "Best: " + str(int(best_rate * 100)) + "%"
+	best_rate_label.text = "Tasty: " + str(int(best_rate * 100)) + "%"
 	cook_number = 0
 	flour_texture_progress_bar.value = 0
 	butter_texture_progress_bar.value = 0
@@ -601,10 +699,17 @@ func _on_trash_button_button_down() -> void:
 
 func _on_shop_button_pressed() -> void:
 	shop_sfx.play()
-	shop.show()
+	if shop.visible:
+		shop.hide()
+	else:
+		shop.show()
 
 func _on_shop_flour_pressed() -> void:
 	shop_btn_sfx.play()
+	if money == 0:
+		show_notice("money not enouph")
+		return
+		
 	if money >= 100:
 		cost_money(100)
 		flour_ori += 100
@@ -615,6 +720,10 @@ func _on_shop_flour_pressed() -> void:
 
 func _on_shop_butter_pressed() -> void:
 	shop_btn_sfx.play()
+	if money == 0:
+		show_notice("money not enouph")
+		return
+		
 	if money >= 100:
 		cost_money(100)
 		butter_ori += 100
@@ -625,6 +734,10 @@ func _on_shop_butter_pressed() -> void:
 
 func _on_shop_suger_pressed() -> void:
 	shop_btn_sfx.play()
+	if money == 0:
+		show_notice("money not enouph")
+		return
+		
 	if money >= 100:
 		cost_money(100)
 		suger_ori += 100
@@ -635,6 +748,10 @@ func _on_shop_suger_pressed() -> void:
 
 func _on_shop_egg_pressed() -> void:
 	shop_btn_sfx.play()
+	if money == 0:
+		show_notice("money not enouph")
+		return
+		
 	if money >= 100:
 		cost_money(100)
 		egg_ori += 100
@@ -643,6 +760,137 @@ func _on_shop_egg_pressed() -> void:
 		money = 0
 	update_ori()
 
+func _on_shop_strawberry_pressed() -> void:
+	shop_btn_sfx.play()
+	if money < 100:
+		show_notice("money not enouph")
+		return
+	
+	cost_money(100)
+	strawberry_ori += 10
+	strawberry_times.text = str(strawberry_ori)
+
+func _on_shop_grape_pressed() -> void:
+	shop_btn_sfx.play()
+	if money < 150:
+		show_notice("money not enouph")
+		return
+		
+	cost_money(150)
+	grape_ori += 10
+	grape_times.text = str(grape_ori)
+
+func _on_shop_pineapple_pressed() -> void:
+	shop_btn_sfx.play()
+	if money < 200:
+		show_notice("money not enouph")
+		return
+		
+	cost_money(200)
+	pineapple_ori += 10
+	pineapple_times.text = str(pineapple_ori)
+
 func _on_close_pressed() -> void:
 	shop_sfx.play()
 	shop.hide()
+
+func _on_up_button_pressed() -> void:
+	up_sfx.play()
+	if up.visible:
+		up.hide()
+	else:
+		up.show()
+
+func _on_up_close_pressed() -> void:
+	up_btn_sfx.play()
+	up.hide()
+
+func _on_up_butter_pressed() -> void:
+	up_btn_sfx.play()
+	if money >= 500:
+		cost_money(500)
+	else:
+		show_notice("money not enouph")
+		return
+	butter_unlock = true
+	butter_btn.show()
+	butter_progress.show()
+	up_butter.hide()
+	shop_butter_btn.show()
+
+func _on_up_suger_pressed() -> void:
+	up_btn_sfx.play()
+	if money >= 600:
+		cost_money(600)
+	else:
+		show_notice("money not enouph")
+		return
+	suger_unlock = true
+	suger_btn.show()
+	suger_progress.show()
+	up_suger.hide()
+	shop_suger_btn.show()
+
+func _on_up_egg_pressed() -> void:
+	up_btn_sfx.play()
+	if money >= 700:
+		cost_money(700)
+	else:
+		show_notice("money not enouph")
+		return
+	egg_unlock = true
+	egg_btn.show()
+	egg_progress.show()
+	up_egg.hide()
+	shop_egg_btn.show()
+
+func _on_up_strawberry_pressed() -> void:
+	up_btn_sfx.play()
+	if money >= 500:
+		cost_money(500)
+	else:
+		show_notice("money not enouph")
+		return
+	strawberry_unlock = true
+	up_strawberry.hide()
+	strawberry_btn.show()
+	shop_strawberry.show()
+
+func _on_up_grape_pressed() -> void:
+	up_btn_sfx.play()
+	if money >= 1000:
+		cost_money(1000)
+	else:
+		show_notice("money not enouph")
+		return
+	grape_unlock = true
+	up_grape.hide()
+	grape_btn.show()
+	shop_grape.show()
+
+func _on_up_pineapple_pressed() -> void:
+	up_btn_sfx.play()
+	if money >= 2000:
+		cost_money(2000)
+	else:
+		show_notice("money not enouph")
+		return
+	pineapple_unlock = true
+	up_pineapple.hide()
+	pineapple_btn.show()
+	shop_pineapple.show()
+
+
+func _on_retry_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+func _on_close_button_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_help_button_pressed() -> void:
+	help_sfx.play()
+	if help.visible:
+		help.hide()
+	else:
+		help.show()

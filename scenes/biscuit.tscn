@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://50qwtfrjgugt"]
+[gd_scene load_steps=7 format=3 uid="uid://50qwtfrjgugt"]
 
 [ext_resource type="Script" uid="uid://b03hjwghsosle" path="res://scripts/biscuit.gd" id="1_ug7ah"]
 [ext_resource type="Texture2D" uid="uid://c1bvxqc138c3s" path="res://assets/biscuit_normal.png" id="2_ug7ah"]
 [ext_resource type="Texture2D" uid="uid://s3seyya28xdo" path="res://assets/biscuit_pieapple.png" id="3_7b2ar"]
-[ext_resource type="Texture2D" uid="uid://da2wjie81o3jr" path="res://assets/biscuit_blueberry.png" id="4_27tx6"]
+[ext_resource type="Texture2D" uid="uid://bnakdl474far6" path="res://assets/biscuit_white.png" id="3_tp5fp"]
+[ext_resource type="Texture2D" uid="uid://d3qema3kmtqqi" path="res://assets/biscuit_grape.png" id="4_b21vy"]
 [ext_resource type="Texture2D" uid="uid://u30kpbtprjhg" path="res://assets/biscuit_strawberry.png" id="5_b21vy"]
 
 [node name="Biscuit" type="Control"]
@@ -17,6 +18,13 @@ offset_right = 34.0
 offset_bottom = 28.0
 texture = ExtResource("2_ug7ah")
 
+[node name="White" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 28.0
+texture = ExtResource("3_tp5fp")
+
 [node name="Pineapple" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -24,12 +32,12 @@ offset_right = 34.0
 offset_bottom = 28.0
 texture = ExtResource("3_7b2ar")
 
-[node name="Blueberry" type="TextureRect" parent="."]
+[node name="Grape" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
 offset_right = 34.0
 offset_bottom = 28.0
-texture = ExtResource("4_27tx6")
+texture = ExtResource("4_b21vy")
 
 [node name="Strawberry" type="TextureRect" parent="."]
 visible = false

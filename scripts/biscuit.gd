@@ -5,14 +5,15 @@ class_name Biscuit
 @onready var rate: Label = $Rate
 @onready var normal: TextureRect = $Normal
 @onready var pineapple: TextureRect = $Pineapple
-@onready var blueberry: TextureRect = $Blueberry
+@onready var grape: TextureRect = $Grape
 @onready var strawberry: TextureRect = $Strawberry
-@onready var normal_2: TextureRect = $Normal2
+@onready var white: TextureRect = $White
 
 enum Taste {
+	White,
 	Normal,
 	Pineapple,
-	Blueberry,
+	Grape,
 	Strawberry,
 }
 
@@ -64,23 +65,33 @@ func move_to_shelves():
 func set_taste(t: Taste):
 	taste = t
 	match t:
+		Taste.White:
+			white.show()
+			normal.hide()
+			pineapple.hide()
+			grape.hide()
+			strawberry.hide()
 		Taste.Normal:
+			white.hide()
 			normal.show()
 			pineapple.hide()
-			blueberry.hide()
+			grape.hide()
 			strawberry.hide()
 		Taste.Pineapple:
+			white.hide()
 			normal.hide()
 			pineapple.show()
-			blueberry.hide()
+			grape.hide()
 			strawberry.hide()
-		Taste.Blueberry:
+		Taste.Grape:
+			white.hide()
 			normal.hide()
 			pineapple.hide()
-			blueberry.show()
+			grape.show()
 			strawberry.hide()
 		Taste.Strawberry:
+			white.hide()
 			normal.hide()
 			pineapple.hide()
-			blueberry.hide()
+			grape.hide()
 			strawberry.show()

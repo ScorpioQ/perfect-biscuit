@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da2wjie81o3jr"
-path="res://.godot/imported/biscuit_blueberry.png-8c092d86884545c5387c3f3b6be93c04.ctex"
+uid="uid://dsd0on0prdimd"
+path="res://.godot/imported/extra_pineapple.png-d17882aad648b4fc12791c3c7d697a95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/biscuit_blueberry.png"
-dest_files=["res://.godot/imported/biscuit_blueberry.png-8c092d86884545c5387c3f3b6be93c04.ctex"]
+source_file="res://assets/extra_pineapple.png"
+dest_files=["res://.godot/imported/extra_pineapple.png-d17882aad648b4fc12791c3c7d697a95.ctex"]
 
 [params]
 
