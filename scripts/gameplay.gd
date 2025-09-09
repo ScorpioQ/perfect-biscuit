@@ -1,53 +1,68 @@
 extends CanvasLayer
 
-# Choose Area
-@onready var choose_button: Control = $ChooseButton
-@onready var egg_btn: TextureButton = $ChooseButton/HBoxContainer/Egg
-@onready var butter_btn: TextureButton = $ChooseButton/HBoxContainer/Butter
-@onready var flour_btn: TextureButton = $ChooseButton/HBoxContainer/Flour
-@onready var suger_btn: TextureButton = $ChooseButton/HBoxContainer/Suger
+# Notice
+@onready var notice_panel_container: PanelContainer = $Notice
+@onready var notice_label: Label = $Notice/NoticeLabel
 
-# filling text
-@onready var filling_progress: Control = $FillingProgress
+# FirstStep
+@onready var egg_btn: TextureButton = $FirstStep/HBoxContainer/Egg
+@onready var butter_btn: TextureButton = $FirstStep/HBoxContainer/Butter
+@onready var flour_btn: TextureButton = $FirstStep/HBoxContainer/Flour
+@onready var suger_btn: TextureButton = $FirstStep/HBoxContainer/Suger
+@onready var btn_sfx: AudioStreamPlayer2D = $FirstStep/BtnSFX
 
-@onready var egg_target_label: RichTextLabel = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer/EggTargetLabel
-@onready var egg_texture_progress_bar: TextureProgressBar = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar
-@onready var egg_max: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggMax
-@onready var egg_min: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggMin
-@onready var egg_perfect: TextureRect = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar/EggPerfect
+@onready var egg_ori_label: Label = $FirstStep/HBoxContainer/Egg/EggOriLabel
+@onready var butter_ori_label: Label = $FirstStep/HBoxContainer/Butter/ButterOriLabel
+@onready var suger_ori_label: Label = $FirstStep/HBoxContainer/Suger/SugerOriLabel
+@onready var flour_ori_label: Label = $FirstStep/HBoxContainer/Flour/FlourOriLabel
 
-@onready var butter_target_label: RichTextLabel = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer2/ButterTargetLabel
-@onready var butter_texture_progress_bar: TextureProgressBar = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar
-@onready var butter_max: Label = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterMax
-@onready var butter_min: Label = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterMin
-@onready var butter_perfect: TextureRect = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar/ButterPerfect
+# Progress Bar
+@onready var flour_texture_progress_bar: TextureProgressBar = $FillingProgress/VBoxContainer/HBoxContainer/FlourTextureProgressBar
 
-@onready var suger_target_label: RichTextLabel = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer3/SugerTargetLabel
-@onready var suger_texture_progress_bar: TextureProgressBar = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar
-@onready var suger_max: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerMax
-@onready var suger_min: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerMin
-@onready var suger_perfect: TextureRect = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar/SugerPerfect
+@onready var suger_progress: HBoxContainer = $FillingProgress/VBoxContainer/HBoxContainer2
+@onready var suger_texture_progress_bar: TextureProgressBar = $FillingProgress/VBoxContainer/HBoxContainer2/SugerTextureProgressBar
+@onready var suger_max: Label = $FillingProgress/VBoxContainer/HBoxContainer2/SugerMax
+@onready var suger_min: Label = $FillingProgress/VBoxContainer/HBoxContainer2/SugerMin
+@onready var suger_perfect: TextureRect = $FillingProgress/VBoxContainer/HBoxContainer2/SugerTextureProgressBar/SugerPerfect
+@onready var suger_perfect_label: Label = $FillingProgress/VBoxContainer/HBoxContainer2/SugerTextureProgressBar/SugerPerfectLabel
+@onready var suger_good_label: Label = $FillingProgress/VBoxContainer/HBoxContainer2/SugerTextureProgressBar/SugerGoodLabel
 
-@onready var suger_perfect_label: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar/SugerPerfectLabel
-@onready var butter_perfect_label: Label = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar/ButterPerfectLabel
-@onready var egg_perfect_label: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar/EggPerfectLabel
-@onready var suger_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer/SugerTextureProgressBar/SugerGoodLabel
-@onready var butter_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer/ButterTextureProgressBar/ButterGoodLabel
-@onready var egg_good_label: Label = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2/EggTextureProgressBar/EggGoodLabel
+@onready var butter_progress: HBoxContainer = $FillingProgress/VBoxContainer/HBoxContainer3
+@onready var butter_texture_progress_bar: TextureProgressBar = $FillingProgress/VBoxContainer/HBoxContainer3/ButterTextureProgressBar
+@onready var butter_max: Label = $FillingProgress/VBoxContainer/HBoxContainer3/ButterMax
+@onready var butter_min: Label = $FillingProgress/VBoxContainer/HBoxContainer3/ButterMin
+@onready var butter_perfect: TextureRect = $FillingProgress/VBoxContainer/HBoxContainer3/ButterTextureProgressBar/ButterPerfect
+@onready var butter_perfect_label: Label = $FillingProgress/VBoxContainer/HBoxContainer3/ButterTextureProgressBar/ButterPerfectLabel
+@onready var butter_good_label: Label = $FillingProgress/VBoxContainer/HBoxContainer3/ButterTextureProgressBar/ButterGoodLabel
+
+@onready var egg_progress: HBoxContainer = $FillingProgress/VBoxContainer/HBoxContainer4
+@onready var egg_texture_progress_bar: TextureProgressBar = $FillingProgress/VBoxContainer/HBoxContainer4/EggTextureProgressBar
+@onready var egg_max: Label = $FillingProgress/VBoxContainer/HBoxContainer4/EggMax
+@onready var egg_min: Label = $FillingProgress/VBoxContainer/HBoxContainer4/EggMin
+@onready var egg_perfect: TextureRect = $FillingProgress/VBoxContainer/HBoxContainer4/EggTextureProgressBar/EggPerfect
+@onready var egg_good_label: Label = $FillingProgress/VBoxContainer/HBoxContainer4/EggTextureProgressBar/EggGoodLabel
+@onready var egg_perfect_label: Label = $FillingProgress/VBoxContainer/HBoxContainer4/EggTextureProgressBar/EggPerfectLabel
+
 @onready var perfect_sfx: AudioStreamPlayer2D = $FillingProgress/PerfectSFX
 @onready var good_sfx: AudioStreamPlayer2D = $FillingProgress/GoodSFX
-@onready var btn_sfx: AudioStreamPlayer2D = $FillingProgress/BtnSFX
 
-
-@onready var flour_target_label: RichTextLabel = $FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer/FlourTargetLabel
-@onready var flour_texture_progress_bar: TextureProgressBar = $FillingProgress/HBoxContainer/HBoxContainer4/VBoxContainer2/FlourTextureProgressBar
-
-@onready var notice_panel_container: PanelContainer = $PanelContainer
-@onready var notice_label: Label = $PanelContainer/NoticeLabel
-
+@onready var biscuit_number_label: Label = $PredictNumber/BiscuitNumberLabel
 @onready var best_rate_label: Label = $BestRateLabel
+
+# Trash
+@onready var trash_button: TextureButton = $TrashButton
+@onready var trash_btn_sfx: AudioStreamPlayer2D = $TrashButton/AudioStreamPlayer2D
+
+# Baker
 @onready var baker: AnimatedSprite2D = $Baker
 @onready var baker_best_rate_label: Label = $Baker/BakerBestRateLabel
+@onready var baker_progress_bar: TextureProgressBar = $Baker/TextureProgressBar
+@onready var bake_sfx: AudioStreamPlayer2D = $Baker/BakeSFX
+@onready var clock_sfx: AudioStreamPlayer2D = $Baker/ClockSFX
+@onready var bake_btn_sfx: AudioStreamPlayer2D = $BakeButton/AudioStreamPlayer2D
+
+# Shelves
+@onready var shelve_btn_sfx: AudioStreamPlayer2D = $ShelveButton/AudioStreamPlayer2D
 
 @onready var shelves_maker: Control = $Shelves/ShelvesMaker
 @onready var shelves_maker_2: Control = $Shelves/ShelvesMaker2
@@ -58,37 +73,26 @@ extends CanvasLayer
 @onready var extra_shelves_maker_2: Control = $ExtraShelves/ExtraShelvesMaker2
 @onready var extra_shelves_maker_3: Control = $ExtraShelves/ExtraShelvesMaker3
 
-@onready var money_label: Label = $MoneyLabel
-@onready var trash_button: TextureButton = $TrashButton
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $TrashButton/AudioStreamPlayer2D
+# Extra
+@onready var extra_btn_sfx: AudioStreamPlayer2D = $ExtraButton/HBoxContainer/ExtraBtnSFX
+@onready var pineapple_btn: TextureButton = $ExtraButton/HBoxContainer/Pineapple
+@onready var pineapple_times: Label = $ExtraButton/HBoxContainer/Pineapple/PineappleTimes
+@onready var grape_btn: TextureButton = $ExtraButton/HBoxContainer/Grape
+@onready var grape_times: Label = $ExtraButton/HBoxContainer/Grape/GrapeTimes
+@onready var strawberry_btn: TextureButton = $ExtraButton/HBoxContainer/Strawberry
+@onready var strawberry_times: Label = $ExtraButton/HBoxContainer/Strawberry/StrawberryTimes
 
-@onready var biscuit_number_label: Label = $HBoxContainer5/BiscuitNumberLabel
+# People
 @onready var people: Control = $People
-@onready var baker_progress_bar: TextureProgressBar = $Baker/TextureProgressBar
-@onready var bake_sfx: AudioStreamPlayer2D = $Baker/BakeSFX
-@onready var clock_sfx: AudioStreamPlayer2D = $Baker/ClockSFX
 
+# Prefab
 @export var biscuit_tscn: PackedScene
 @export var money_tscn: PackedScene
-@onready var shelve_btn_sfx: AudioStreamPlayer2D = $ShelveButton/AudioStreamPlayer2D
-@onready var bake_btn_sfx: AudioStreamPlayer2D = $BakeButton/AudioStreamPlayer2D
 
-@onready var egg_ori_label: Label = $ChooseButton/HBoxContainer/Egg/EggOriLabel
-@onready var butter_ori_label: Label = $ChooseButton/HBoxContainer/Butter/ButterOriLabel
-@onready var suger_ori_label: Label = $ChooseButton/HBoxContainer/Suger/SugerOriLabel
-@onready var flour_ori_label: Label = $ChooseButton/HBoxContainer/Flour/FlourOriLabel
-@onready var extra_btn_sfx: AudioStreamPlayer2D = $ExtraButton/HBoxContainer/ExtraBtnSFX
+# Shop
 @onready var shop_sfx: AudioStreamPlayer2D = $ShopButton/ShopSFX
 @onready var shop_btn_sfx: AudioStreamPlayer2D = $Shop/ShopBtnSFX
 @onready var shop: Control = $Shop
-@onready var biscuit_layer: Control = $Biscuit
-
-@onready var pineapple_btn: TextureButton = $ExtraButton/HBoxContainer/Pineapple
-@onready var grape_btn: TextureButton = $ExtraButton/HBoxContainer/Grape
-@onready var strawberry_btn: TextureButton = $ExtraButton/HBoxContainer/Strawberry
-@onready var pineapple_times: Label = $ExtraButton/HBoxContainer/Pineapple/PineappleTimes
-@onready var grape_times: Label = $ExtraButton/HBoxContainer/Grape/GrapeTimes
-@onready var strawberry_times: Label = $ExtraButton/HBoxContainer/Strawberry/StrawberryTimes
 
 @onready var shop_butter_btn: TextureButton = $Shop/ShopButter
 @onready var shop_suger_btn: TextureButton = $Shop/ShopSuger
@@ -97,6 +101,7 @@ extends CanvasLayer
 @onready var shop_grape: TextureButton = $Shop/ShopGrape
 @onready var shop_pineapple: TextureButton = $Shop/ShopPineapple
 
+# Upgrade
 @onready var up_button: TextureButton = $UpButton
 @onready var up_sfx: AudioStreamPlayer2D = $UpButton/UpSFX
 @onready var up: Control = $Up
@@ -104,15 +109,21 @@ extends CanvasLayer
 @onready var up_butter: TextureButton = $Up/HBoxContainer/UpButter
 @onready var up_suger: TextureButton = $Up/HBoxContainer/UpSuger
 @onready var up_egg: TextureButton = $Up/HBoxContainer/UpEgg
-@onready var suger_progress: HBoxContainer = $FillingProgress/HBoxContainer/HBoxContainer3/VBoxContainer
-@onready var butter_progress: HBoxContainer = $FillingProgress/HBoxContainer/HBoxContainer2/VBoxContainer
-@onready var egg_progress: HBoxContainer = $FillingProgress/HBoxContainer/HBoxContainer/VBoxContainer2
+
 @onready var up_strawberry: TextureButton = $Up/HBoxContainer2/UpStrawberry
 @onready var up_grape: TextureButton = $Up/HBoxContainer2/UpGrape
 @onready var up_pineapple: TextureButton = $Up/HBoxContainer2/UpPineapple
-@onready var game_over: Control = $GameOver
+
+# Help
 @onready var help_sfx: AudioStreamPlayer2D = $HelpButton/HelpSFX
 @onready var help: Control = $Help
+
+# Biscuit
+@onready var biscuit_layer: Control = $Biscuit
+
+# UI
+@onready var money_label: Label = $MoneyLabel
+@onready var game_over: Control = $GameOver
 
 var suger_unlock: bool = false
 var butter_unlock: bool = false
@@ -323,17 +334,12 @@ func is_shelve_emtpy() -> bool:
 	return true
 	
 func reset_progress_min_max():
-	egg_target_label.text = egg_target_text % egg_cur
 	egg_min.text = str(x1_egg_min) + "g"
 	egg_max.text = str(x1_egg_max) + "g"
 
-	butter_target_label.text = butter_target_text % butter_cur
 	butter_min.text = str(x1_butter_min) + "g"
 	butter_max.text = str(x1_butter_max) + "g"
 
-	flour_target_label.text = flour_target_text % flour_cur
-
-	suger_target_label.text = suger_target_text % suger_cur
 	suger_min.text = str(x1_suger_min) + "g"
 	suger_max.text = str(x1_suger_max) + "g"
 
@@ -403,7 +409,6 @@ func stop_filling():
 			cook_number = flour_cur / 10
 
 			biscuit_number_label.text = "x" + str(cook_number)
-			flour_target_label.text = flour_target_text % flour_cur
 			set_perfect_pos_x(cook_number)
 
 		Filling.Egg:
@@ -672,6 +677,7 @@ func _on_shelve_button_pressed() -> void:
 				extra_shelves[idx] = null
 
 func _on_trash_button_button_down() -> void:
+	trash_btn_sfx.play()
 	flour_ori -= flour_cur
 	egg_ori -= egg_cur
 	butter_ori -= butter_cur
@@ -694,8 +700,6 @@ func _on_trash_button_button_down() -> void:
 	suger_perfect.hide()
 	butter_perfect.hide()
 	egg_perfect.hide()
-	audio_stream_player_2d.play()
-
 
 func _on_shop_button_pressed() -> void:
 	shop_sfx.play()
