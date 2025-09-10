@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://3v37rkgifxsi"]
+[gd_scene load_steps=118 format=3 uid="uid://3v37rkgifxsi"]
 
 [ext_resource type="Script" uid="uid://qwb1lma7ngur" path="res://scripts/gameplay.gd" id="1_00tan"]
 [ext_resource type="PackedScene" uid="uid://50qwtfrjgugt" path="res://scenes/biscuit.tscn" id="2_ctvyo"]
@@ -90,6 +90,7 @@
 [ext_resource type="Texture2D" uid="uid://cuvtkvlix3x7b" path="res://assets/pineapple_btn_normal.png" id="83_xkwig"]
 [ext_resource type="Texture2D" uid="uid://ddk1huclcypux" path="res://assets/pineapple_btn_press.png" id="84_fuc7l"]
 [ext_resource type="Texture2D" uid="uid://dvim4jmjhkcpj" path="res://assets/help_normal.png" id="87_3ftxt"]
+[ext_resource type="Script" uid="uid://bdmacfbxx8jcr" path="res://scripts/help.gd" id="88_br0mk"]
 [ext_resource type="Texture2D" uid="uid://dmpdumqh28402" path="res://assets/help_press.png" id="88_epccv"]
 [ext_resource type="Texture2D" uid="uid://bx6ttxre4ek2b" path="res://assets/retry_normal.png" id="89_lm34y"]
 [ext_resource type="Texture2D" uid="uid://dqsylwi6pylx1" path="res://assets/help.png" id="89_y1v1w"]
@@ -1639,6 +1640,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("88_br0mk")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Help"]
 layout_mode = 0
@@ -2036,7 +2038,7 @@ texture_pressed = ExtResource("76_qlwvc")
 [connection signal="pressed" from="CanvasLayer/Shop/ShopPineapple" to="CanvasLayer" method="_on_shop_pineapple_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Close" to="CanvasLayer" method="_on_close_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpButton" to="CanvasLayer" method="_on_up_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/HelpButton" to="CanvasLayer" method="_on_help_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HelpButton" to="CanvasLayer/Help" method="_on_help_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Up/Close" to="CanvasLayer" method="_on_up_close_pressed"]
 [connection signal="pressed" from="CanvasLayer/Up/HBoxContainer/UpButter" to="CanvasLayer" method="_on_up_butter_pressed"]
 [connection signal="pressed" from="CanvasLayer/Up/HBoxContainer/UpSuger" to="CanvasLayer" method="_on_up_suger_pressed"]

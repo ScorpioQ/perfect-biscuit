@@ -114,10 +114,6 @@ extends CanvasLayer
 @onready var up_grape: TextureButton = $Up/HBoxContainer2/UpGrape
 @onready var up_pineapple: TextureButton = $Up/HBoxContainer2/UpPineapple
 
-# Help
-@onready var help_sfx: AudioStreamPlayer2D = $HelpButton/HelpSFX
-@onready var help: Control = $Help
-
 # Biscuit
 @onready var biscuit_layer: Control = $Biscuit
 
@@ -125,25 +121,11 @@ extends CanvasLayer
 @onready var money_label: Label = $MoneyLabel
 @onready var game_over: Control = $GameOver
 
-var suger_unlock: bool = false
-var butter_unlock: bool = false
-var egg_unlock: bool = false
-var strawberry_unlock: bool = false
-var grape_unlock: bool = false
-var pineapple_unlock: bool = false
-
+# Enum
 enum FillingState {
 	None,
 	ReadyFill,
 	Filling
-}
-
-enum CookState {
-	None,
-	Number,
-	Filling,
-	Bake,
-	Extra,
 }
 
 enum BakerState {
@@ -151,6 +133,23 @@ enum BakerState {
 	Working,
 	Trans,
 }
+
+enum Filling {
+	None,
+	Egg,
+	Butter,
+	Flour,
+	Suger,
+}
+
+# Variables
+var suger_unlock: bool = false
+var butter_unlock: bool = false
+var egg_unlock: bool = false
+
+var strawberry_unlock: bool = false
+var grape_unlock: bool = false
+var pineapple_unlock: bool = false
 
 var flour_ori: int = 240
 var suger_ori: int = 0
@@ -174,32 +173,6 @@ var baking_best_rate: float
 
 var best_rate: float
 
-# filling
-var egg_filling_speed: float = 200.0
-var butter_filling_speed: float = 200.0
-var suger_filling_speed: float = 200.0
-var flour_filling_speed: float = 100.0
-
-const egg_target_text = "%s"
-const butter_target_text = "%s g"
-const flour_target_text = "%s g"
-const suger_target_text = "%s g"
-
-const x1_egg_min: int = 0
-const x1_egg_best: int = 8
-const x1_egg_max: int = 100
-
-const x1_butter_min: int = 0
-const x1_butter_best: int = 5
-const x1_butter_max: int = 90
-
-const x1_suger_min: int = 0
-const x1_suger_best: int = 3
-const x1_suger_max: int = 60
-
-const x1_flour_min: int = 0
-const x1_flour_max: int = 120
-
 var egg_cur: int
 var butter_cur: int
 var flour_cur: int
@@ -216,20 +189,34 @@ var perfect_suger: int
 var perfect_butter: int
 var perfect_egg: int
 
-enum Filling {
-	None,
-	Egg,
-	Butter,
-	Flour,
-	Suger,
-}
+var baker_wait_num: int
+
+# Config
+const egg_filling_speed: float = 200.0
+const butter_filling_speed: float = 200.0
+const suger_filling_speed: float = 200.0
+const flour_filling_speed: float = 100.0
+
+const x1_egg_min: int = 0
+const x1_egg_best: int = 8
+const x1_egg_max: int = 100
+
+const x1_butter_min: int = 0
+const x1_butter_best: int = 5
+const x1_butter_max: int = 90
+
+const x1_suger_min: int = 0
+const x1_suger_best: int = 3
+const x1_suger_max: int = 60
+
+const x1_flour_min: int = 0
+const x1_flour_max: int = 120
 
 const shelves_len: int = 40
 const extra_shelves_len: int = 30
 const shelves_col_len: int = 10
 
-var baker_wait_num: int
-
+# Functions
 func _ready() -> void:
 	reset_progress_min_max()
 	for i in shelves_len:
@@ -884,17 +871,8 @@ func _on_up_pineapple_pressed() -> void:
 	pineapple_btn.show()
 	shop_pineapple.show()
 
-
 func _on_retry_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_close_button_pressed() -> void:
 	get_tree().quit()
-
-
-func _on_help_button_pressed() -> void:
-	help_sfx.play()
-	if help.visible:
-		help.hide()
-	else:
-		help.show()
